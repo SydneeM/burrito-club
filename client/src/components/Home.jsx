@@ -32,7 +32,7 @@ function Home({ socket }) {
       </Listbox>
       <Button onClick={() => {
         if (username !== '' && room.name !== '') {
-          const state = { username: username, room: room.name };
+          const state = { username, room: room.name };
           socket.emit('join_room', state);
           navigate('/room', { state });
         }

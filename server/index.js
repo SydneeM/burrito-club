@@ -24,17 +24,26 @@ io.on('connection', (socket) => {
     socket.join(room);
 
     // Sends message to all sockets excluding sender, io.to for all sockets
-    const messageTime = Date.now();
+    const time = Date.now();
     socket.to(room).emit('receive_message', {
       message: `${username} has joined the chat room`,
       username: 'Server',
-      messageTime,
+      time,
     });
 
-    const curUser = {id: socket.id, username: username, room: room};
+    const curUser = { id: socket.id, username, room };
     userInfo.push(curUser);
     const usersInCurRoom = userInfo.filter((user) => user.room === room).map((filteredUser) => filteredUser.username);
     io.to(room).emit('room_users', usersInCurRoom);
+  });
+
+  socket.on('send_message', data => {
+    const { message, username, room, time } = data;
+    io.to(room).emit('receive_message', {
+      message,
+      username,
+      time,
+    });
   });
 });
 
