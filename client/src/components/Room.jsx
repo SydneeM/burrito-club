@@ -7,7 +7,11 @@ function Room({ socket }) {
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
-      console.log('received:', data);
+      console.log('received message:', data);
+    });
+
+    socket.on('room_users', (data) => {
+      console.log('room users:', data);
     });
   }, [socket]);
 

@@ -7,6 +7,7 @@ const { Server } = require('socket.io');
 app.use(cors());
 
 const server = http.createServer(app);
+const userInfo = []
 
 const io = new Server(server, {
   cors: {
@@ -16,7 +17,7 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log(`User connected ${socket.id}`);
+  console.log(`User connected on socket ${socket.id}`);
 
   socket.on('join_room', (data) => {
     const { username, room } = data;
@@ -29,6 +30,11 @@ io.on('connection', (socket) => {
       username: 'Server',
       messageTime,
     });
+
+    const curUser = {id: socket.id, username: username, room: room};
+    userInfo.push(curUser);
+    const usersInCurRoom = userInfo.filter((user) => user.room === room).map((filteredUser) => filteredUser.username);
+    io.to(room).emit('room_users', usersInCurRoom);
   });
 });
 
