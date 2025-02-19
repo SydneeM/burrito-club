@@ -10,8 +10,8 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route index element={<Home />} />
-        <Route path='room' element={<Room />} />
+        <Route index element={<Home socket={socket} />} />
+        <Route path='room' element={<Room socket={socket} />} />
       </Routes>
     </div>
   )

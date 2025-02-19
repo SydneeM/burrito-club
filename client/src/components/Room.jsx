@@ -1,8 +1,15 @@
+import { useEffect } from 'react';
 import { useLocation } from 'react-router'
 
-function Room() {
+function Room({ socket }) {
   const { state } = useLocation();
   const { username, room } = state;
+
+  useEffect(() => {
+    socket.on('receive_message', (data) => {
+      console.log('received:', data);
+    });
+  }, [socket]);
 
   return (
     <div className='flex flex-col gap-y-4'>
