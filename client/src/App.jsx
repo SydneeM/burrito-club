@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router'
 import './App.css'
 import Home from './components/Home'
-import About from './components/About'
+import Room from './components/Room'
 import { io } from 'socket.io-client'
 
 const socket = io.connect('http://localhost:4000');
@@ -11,7 +11,7 @@ function App() {
     <div>
       <Routes>
         <Route index element={<Home />} />
-        <Route path='about' element={<About />} />
+        <Route path='room' element={<Room />} />
       </Routes>
     </div>
   )
