@@ -3,18 +3,27 @@ import { useLocation } from 'react-router'
 import { Button, Input } from '@headlessui/react'
 
 function Room({ socket }) {
+  const [roomMessages, setRoomMessages] = useState([]);
   const [message, setMessage] = useState('');
   const { state } = useLocation();
   const { username, room } = state;
 
   useEffect(() => {
-    socket.on('receive_message', (data) => {
-      console.log('received message:', data);
-    });
+    const handleReceiveMessage = (data) => {
+      setRoomMessages((messages) => [...messages, data]);
+    }
 
-    socket.on('room_users', (data) => {
+    const handleRoomUsers = (data) => {
       console.log('room users:', data);
-    });
+    }
+
+    socket.on('receive_message', handleReceiveMessage);
+    socket.on('room_users', handleRoomUsers);
+
+    return () => {
+      socket.off('receive_message', handleReceiveMessage);
+      socket.off('room_users', handleRoomUsers);
+    };
   }, [socket]);
 
   return (
