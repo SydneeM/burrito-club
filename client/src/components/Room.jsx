@@ -5,6 +5,7 @@ import { Button, Input } from '@headlessui/react'
 function Room({ socket }) {
   const [roomMessages, setRoomMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const [roomUsers, setRoomUsers] = useState([]);
   const [suggestedRestaurant, setSuggestedRestaurant] = useState('');
   const [suggestedBuyer, setSuggestedBuyer] = useState('');
   const [restaurant, setRestaurant] = useState('');
@@ -25,6 +26,7 @@ function Room({ socket }) {
 
     const handleRoomUsers = (data) => {
       console.log('room users:', data);
+      setRoomUsers(data);
     }
 
     const handleChooseRestaurant = (data) => {
@@ -83,9 +85,15 @@ function Room({ socket }) {
       </div>
       <div className='flex flex-row'>
         <div className='flex flex-col w-1/3 ring-1'>
-          <div>Restaurant of the Week</div>
-          <div>Restaurant/Payer History</div>
-          <div>Current Room Members</div>
+          <div className='self-start'>Restaurant/Payer History</div>
+          <div className='flex flex-col'>
+            <h2 className='self-start'>Current Members:</h2>
+            <ul className='self-start'>
+              {roomUsers.map((user) => (
+                <li key={user} className='self-start text-left'>{user}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className='flex flex-col w-2/3 ring-1'>
           <div className='h-160 overflow-y-scroll'>

@@ -22,6 +22,7 @@ io.on('connection', (socket) => {
   socket.on('join_room', (data) => {
     const { username, room } = data;
     socket.join(room);
+    console.log(username, room);
 
     // Sends message to all sockets excluding sender, io.to for all sockets
     const time = Date.now();
