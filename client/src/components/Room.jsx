@@ -30,7 +30,19 @@ function Room({ socket }) {
     <div className='flex flex-col gap-y-4'>
       <h1 className='p-4'>{username}</h1>
       <h1 className='p-4'>{room}</h1>
-      <Input
+      <div>
+        {roomMessages.map((messageInfo) => (
+          <div
+            className='flex flex-col gap-y-2 ring-blue-400 ring-2 p-2 m-4'
+            key={`${messageInfo.username}-${messageInfo.time}`}
+          >
+            <span>{messageInfo.username}</span>
+            <span>{messageInfo.time}</span>
+            <span>{messageInfo.message}</span>
+          </div>
+        ))}
+      </div>
+      < Input
         className='bg-[#1a1a1a] p-3 rounded-md'
         placeholder='Message'
         onChange={(e) => setMessage(e.target.value)}
