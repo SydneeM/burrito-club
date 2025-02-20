@@ -36,21 +36,21 @@ function Room({ socket }) {
   }, [roomMessages]);
 
   return (
-    <div className='ring-1 h-[95vh]'>
-      <div className='ring-1'>
+    <div className='h-[95vh]'>
+      <div className=''>
         <h1 className='p-8'>{room} Club</h1>
       </div>
-      <div className='flex flex-row ring-1'>
-        <div className='flex flex-col ring-1 w-1/3'>
+      <div className='flex flex-row'>
+        <div className='flex flex-col w-1/3 ring-1'>
           <div>Restaurant of the Week</div>
           <div>Restaurant/Payer History</div>
           <div>Current Room Members</div>
         </div>
-        <div className='flex flex-col ring-1 ring-blue-400 w-2/3'>
-          <div className='ring-1 h-160 overflow-y-scroll scroll-auto'>
+        <div className='flex flex-col w-2/3 ring-1'>
+          <div className='h-160 overflow-y-scroll'>
             {roomMessages.map((messageInfo) => (
               <div
-                className='flex flex-col gap-y-2 ring-blue-400 ring-2 p-2 m-4'
+                className='flex flex-col p-2 m-4 ring-1'
                 key={`${messageInfo.username}-${messageInfo.time}`}
               >
                 <span>{messageInfo.username}</span>
@@ -60,13 +60,15 @@ function Room({ socket }) {
             ))}
             <div ref={messagesEndRef} />
           </div>
-          <div className='ring-1 flex flex-row'>
+          <div className='flex flex-row mb-4 mx-4 justify-between'>
             < Input
-              className='bg-[#1a1a1a] p-3 rounded-md'
+              className='bg-[#1a1a1a] p-3 rounded-md w-10/12'
               placeholder='Message'
               onChange={(e) => setMessage(e.target.value)}
             />
-            <Button onClick={() => {
+            <Button 
+            className='bg-[#1a1a1a] p-3 rounded-md w-2/12'
+            onClick={() => {
               if (message !== '') {
                 const time = Date.now();
                 const state = { message, username, room, time };
