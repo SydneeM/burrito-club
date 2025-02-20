@@ -45,6 +45,14 @@ io.on('connection', (socket) => {
       time,
     });
   });
+
+  socket.on('choose_restaurant', data => {
+    const { suggestedBuyer, suggestedRestaurant, room } = data;
+    io.to(room).emit('restaurant_info', {
+      buyer: suggestedBuyer,
+      restaurant: suggestedRestaurant,
+    });
+  });
 });
 
 server.listen(4000);

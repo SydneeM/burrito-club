@@ -5,6 +5,11 @@ import { Button, Input } from '@headlessui/react'
 function Room({ socket }) {
   const [roomMessages, setRoomMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const [suggestedRestaurant, setSuggestedRestaurant] = useState('');
+  const [suggestedBuyer, setSuggestedBuyer] = useState('');
+  const [restaurant, setRestaurant] = useState('');
+  const [buyer, setBuyer] = useState('');
+
   const { state } = useLocation();
   const { username, room } = state;
   const messagesEndRef = useRef(null);
@@ -22,12 +27,21 @@ function Room({ socket }) {
       console.log('room users:', data);
     }
 
+    const handleChooseRestaurant = (data) => {
+      console.log('restaurant:', data);
+      const { restaurant, buyer } = data;
+      setRestaurant(restaurant);
+      setBuyer(buyer);
+    }
+
     socket.on('receive_message', handleReceiveMessage);
     socket.on('room_users', handleRoomUsers);
+    socket.on('restaurant_info', handleChooseRestaurant);
 
     return () => {
       socket.off('receive_message', handleReceiveMessage);
       socket.off('room_users', handleRoomUsers);
+      socket.off('restaurant_info', handleChooseRestaurant);
     };
   }, [socket]);
 
@@ -38,7 +52,34 @@ function Room({ socket }) {
   return (
     <div className='h-[95vh]'>
       <div className=''>
-        <h1 className='p-8'>{room} Club</h1>
+        <h2 className='p-8'>{room} Club</h2>
+      </div>
+      <div className='flex flex-row ring-1 py-4 gap-x-8'>
+        <h2 className=''>Restaurant of the Week: {restaurant}</h2>
+        <h2 className=''>Who&apos;s Paying: {buyer}</h2>
+      </div>
+      <div className='row row-flex my-4 justify-between'>
+        < Input
+          className='bg-[#1a1a1a] p-3 rounded-md w-2/5'
+          placeholder='Restaurant of the Week'
+          onChange={(e) => setSuggestedRestaurant(e.target.value)}
+        />
+        < Input
+          className='bg-[#1a1a1a] p-3 rounded-md w-2/5'
+          placeholder='Buyer'
+          onChange={(e) => setSuggestedBuyer(e.target.value)}
+        />
+        <Button
+          className='bg-[#1a1a1a] p-3 rounded-md w-1/5'
+          onClick={() => {
+            if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
+              suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
+              const state = { suggestedBuyer, suggestedRestaurant, room };
+              socket.emit('choose_restaurant', state);
+            }
+          }}>
+          Enter
+        </Button>
       </div>
       <div className='flex flex-row'>
         <div className='flex flex-col w-1/3 ring-1'>
@@ -66,15 +107,15 @@ function Room({ socket }) {
               placeholder='Message'
               onChange={(e) => setMessage(e.target.value)}
             />
-            <Button 
-            className='bg-[#1a1a1a] p-3 rounded-md w-2/12'
-            onClick={() => {
-              if (message !== '') {
-                const time = Date.now();
-                const state = { message, username, room, time };
-                socket.emit('send_message', state);
-              }
-            }}>
+            <Button
+              className='bg-[#1a1a1a] p-3 rounded-md w-2/12'
+              onClick={() => {
+                if (message !== '' && message.trim().length !== 0) {
+                  const time = Date.now();
+                  const state = { message, username, room, time };
+                  socket.emit('send_message', state);
+                }
+              }}>
               Enter
             </Button>
           </div>
