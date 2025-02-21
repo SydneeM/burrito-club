@@ -96,7 +96,7 @@ function Room({ socket }) {
               onChange={(e) => setMessage(e.target.value)}
             />
             <button
-              className='p-3 w-2/12 ring-1'
+              className='p-3 w-2/12 min-w-fit ring-1'
               onClick={() => {
                 if (message !== '' && message.trim().length !== 0) {
                   const time = Date.now();
