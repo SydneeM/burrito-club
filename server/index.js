@@ -18,7 +18,7 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log(`User connected on socket ${socket.id}`);
+  console.log(`User connected to socket ${socket.id}`);
 
   socket.on('join_room', (data) => {
     const { username, room } = data;
@@ -35,13 +35,24 @@ io.on('connection', (socket) => {
     io.to(room).emit('room_users', usersInCurRoom);
   });
 
+  socket.on('disconnect', () => {
+    console.log(`User disconnected from socket ${socket.id}`);
+    const disconnectedUser = users.filter((user) => user.id === socket.id);
+
+    if (disconnectedUser.length > 0) {
+      const room = disconnectedUser.room;
+      const updatedUsers = users.filter((user) => user.id !== socket.id);
+      users = updatedUsers;
+      const updatedUsersInCurRoom = updatedUsers.filter((user) => user.room === room).map((filteredUser) => filteredUser.username);
+      io.to(room).emit('room_users', updatedUsersInCurRoom);
+    }
+  });
+
   socket.on('leave_room', (data) => {
     const { username, room } = data;
     socket.leave(room);
-
-    const updatedUsers = users.filter((user) => user.id != socket.id)
+    const updatedUsers = users.filter((user) => user.id !== socket.id);
     users = updatedUsers;
-
     const updatedUsersInCurRoom = updatedUsers.filter((user) => user.room === room).map((filteredUser) => filteredUser.username);
     io.to(room).emit('room_users', updatedUsersInCurRoom);
   });
