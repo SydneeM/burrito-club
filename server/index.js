@@ -7,8 +7,8 @@ const { Server } = require('socket.io');
 app.use(cors());
 
 const server = http.createServer(app);
-const users = [];
-const history = [];
+let users = [];
+let history = [];
 
 const io = new Server(server, {
   cors: {
@@ -24,14 +24,6 @@ io.on('connection', (socket) => {
     const { username, room } = data;
     socket.join(room);
 
-    // Sends message to all sockets excluding sender, io.to for all sockets
-    const time = Date.now();
-    socket.to(room).emit('receive_message', {
-      message: `${username} has joined the chat room`,
-      username: 'Server',
-      time,
-    });
-
     const curUser = {
       id: socket.id,
       username,
@@ -41,6 +33,17 @@ io.on('connection', (socket) => {
     users.push(curUser);
     const usersInCurRoom = users.filter((user) => user.room === room).map((filteredUser) => filteredUser.username);
     io.to(room).emit('room_users', usersInCurRoom);
+  });
+
+  socket.on('leave_room', (data) => {
+    const { username, room } = data;
+    socket.leave(room);
+
+    const updatedUsers = users.filter((user) => user.id != socket.id)
+    users = updatedUsers;
+
+    const updatedUsersInCurRoom = updatedUsers.filter((user) => user.room === room).map((filteredUser) => filteredUser.username);
+    io.to(room).emit('room_users', updatedUsersInCurRoom);
   });
 
   socket.on('send_message', data => {

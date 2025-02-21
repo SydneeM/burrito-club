@@ -19,20 +19,24 @@ function Room({ socket }) {
 
   useEffect(() => {
     const handleReceiveMessage = (data) => {
+      console.log('Received message');
       setRoomMessages((messages) => [...messages, data]);
     }
 
     const handleRoomUsers = (data) => {
+      console.log('Updated room users');
       setRoomUsers(data);
     }
 
     const handleChooseRestaurant = (data) => {
+      console.log('Set restaurant');
       const { name, buyer } = data;
       setRestaurant(name);
       setBuyer(buyer);
     }
 
     const handleRestaurantHistory = (data) => {
+      console.log('Updated restaurant history');
       setRestaurantHistory(data);
     }
 
@@ -84,7 +88,9 @@ function Room({ socket }) {
       </div>
       <div className='flex flex-row ring-blue-500 ring-2 h-3/4'>
         <div className='flex flex-col w-1/3 ring-1'>
-          <Users users={roomUsers} />
+          {roomUsers.length > 0 &&
+            <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
+          }
           <History restaurants={restaurantHistory} />
         </div>
         <div className='flex flex-col w-2/3 ring-1'>
