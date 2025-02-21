@@ -9,6 +9,7 @@ function Room({ socket }) {
   const [suggestedRestaurant, setSuggestedRestaurant] = useState('');
   const [suggestedBuyer, setSuggestedBuyer] = useState('');
   const [restaurant, setRestaurant] = useState('');
+  const [restaurantHistory, setRestaurantHistory] = useState([]);
   const [buyer, setBuyer] = useState('');
 
   const { state } = useLocation();
@@ -31,19 +32,26 @@ function Room({ socket }) {
 
     const handleChooseRestaurant = (data) => {
       console.log('restaurant:', data);
-      const { restaurant, buyer } = data;
-      setRestaurant(restaurant);
+      const { name, buyer } = data;
+      setRestaurant(name);
       setBuyer(buyer);
+    }
+
+    const handleRestaurantHistory = (data) => {
+      console.log('restaurants:', data);
+      setRestaurantHistory((restaurants) => [...restaurants, data]);
     }
 
     socket.on('receive_message', handleReceiveMessage);
     socket.on('room_users', handleRoomUsers);
     socket.on('restaurant_info', handleChooseRestaurant);
+    socket.on('restaurant_history', handleRestaurantHistory);
 
     return () => {
       socket.off('receive_message', handleReceiveMessage);
       socket.off('room_users', handleRoomUsers);
       socket.off('restaurant_info', handleChooseRestaurant);
+      socket.off('restaurant_history', handleRestaurantHistory);
     };
   }, [socket]);
 
@@ -76,7 +84,8 @@ function Room({ socket }) {
           onClick={() => {
             if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
               suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
-              const state = { suggestedBuyer, suggestedRestaurant, room };
+              const time = Date.now();
+              const state = { suggestedBuyer, suggestedRestaurant, room, time };
               socket.emit('choose_restaurant', state);
             }
           }}>
@@ -85,12 +94,23 @@ function Room({ socket }) {
       </div>
       <div className='flex flex-row'>
         <div className='flex flex-col w-1/3 ring-1'>
-          <div className='self-start'>Restaurant/Payer History</div>
           <div className='flex flex-col'>
             <h2 className='self-start'>Current Members:</h2>
             <ul className='self-start'>
               {roomUsers.map((user) => (
                 <li key={user} className='self-start text-left'>{user}</li>
+              ))}
+            </ul>
+          </div>
+          <div className='flex flex-col'>
+            <h2 className='self-start'>Restaurant History:</h2>
+            <ul className='self-start'>
+              {restaurantHistory.map((restaurant) => (
+                <li key={`${restaurant.name}-${restaurant.time}`} className='self-start text-left'>
+                  <span>{restaurant.name}</span>
+                  <span>{restaurant.buyer}</span>
+                  <span>{restaurant.time}</span>
+                </li>
               ))}
             </ul>
           </div>
