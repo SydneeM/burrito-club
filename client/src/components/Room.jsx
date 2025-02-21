@@ -39,7 +39,7 @@ function Room({ socket }) {
 
     const handleRestaurantHistory = (data) => {
       console.log('restaurants:', data);
-      setRestaurantHistory((restaurants) => [...restaurants, data]);
+      setRestaurantHistory(data);
     }
 
     socket.on('receive_message', handleReceiveMessage);
@@ -85,7 +85,7 @@ function Room({ socket }) {
             if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
               suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
               const time = Date.now();
-              const state = { suggestedBuyer, suggestedRestaurant, room, time };
+              const state = { suggestedBuyer, suggestedRestaurant, room, time, };
               socket.emit('choose_restaurant', state);
             }
           }}>
@@ -140,7 +140,7 @@ function Room({ socket }) {
               onClick={() => {
                 if (message !== '' && message.trim().length !== 0) {
                   const time = Date.now();
-                  const state = { message, username, room, time };
+                  const state = { message, username, room, time, };
                   socket.emit('send_message', state);
                 }
               }}>
