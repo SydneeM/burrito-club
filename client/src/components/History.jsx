@@ -1,6 +1,6 @@
 function History({ restaurants }) {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col h-3/4 overflow-scroll ring-1'>
       <h2 className='self-start'>Restaurant History:</h2>
       <ul className='self-start'>
         {restaurants.map((restaurant) => (

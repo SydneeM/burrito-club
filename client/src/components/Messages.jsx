@@ -12,7 +12,7 @@ function Messages({ messages }) {
   }, [messages]);
 
   return (
-    <div className='h-160 overflow-y-scroll'>
+    <div className='h-full overflow-y-scroll'>
       {messages.map((messageInfo) => (
         <div
           className='flex flex-col p-2 m-4 ring-1'

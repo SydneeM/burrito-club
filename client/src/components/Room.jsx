@@ -53,7 +53,6 @@ function Room({ socket }) {
     };
   }, [socket]);
 
-
   return (
     <div className='h-[95vh]'>
       <div className=''>
@@ -87,7 +86,7 @@ function Room({ socket }) {
           Enter
         </Button>
       </div>
-      <div className='flex flex-row'>
+      <div className='flex flex-row ring-blue-500 ring-2 h-3/4'>
         <div className='flex flex-col w-1/3 ring-1'>
           <Users users={roomUsers} />
           <History restaurants={restaurantHistory} />

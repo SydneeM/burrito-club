@@ -1,6 +1,6 @@
 function Users({ users }) {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col h-1/4 ring-1'>
       <h2 className='self-start'>Current Members:</h2>
       <ul className='self-start'>
         {users.map((user) => (
