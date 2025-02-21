@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router'
-import { Button, Input } from '@headlessui/react'
 import Users from './Users';
 import History from './History';
 import Messages from './Messages';
@@ -24,19 +23,16 @@ function Room({ socket }) {
     }
 
     const handleRoomUsers = (data) => {
-      console.log('room users:', data);
       setRoomUsers(data);
     }
 
     const handleChooseRestaurant = (data) => {
-      console.log('restaurant:', data);
       const { name, buyer } = data;
       setRestaurant(name);
       setBuyer(buyer);
     }
 
     const handleRestaurantHistory = (data) => {
-      console.log('restaurants:', data);
       setRestaurantHistory(data);
     }
 
@@ -63,18 +59,18 @@ function Room({ socket }) {
         <h2 className=''>Who&apos;s Paying: {buyer}</h2>
       </div>
       <div className='row row-flex my-4 justify-between'>
-        < Input
-          className='bg-[#1a1a1a] p-3 rounded-md w-2/5'
+        <input
+          className='p-3 w-2/5 ring-1'
           placeholder='Restaurant of the Week'
           onChange={(e) => setSuggestedRestaurant(e.target.value)}
         />
-        < Input
-          className='bg-[#1a1a1a] p-3 rounded-md w-2/5'
+        <input
+          className='p-3 w-2/5 ring-1'
           placeholder='Buyer'
           onChange={(e) => setSuggestedBuyer(e.target.value)}
         />
-        <Button
-          className='bg-[#1a1a1a] p-3 rounded-md w-1/5'
+        <button
+          className='p-3 w-1/5 ring-1'
           onClick={() => {
             if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
               suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
@@ -84,7 +80,7 @@ function Room({ socket }) {
             }
           }}>
           Enter
-        </Button>
+        </button>
       </div>
       <div className='flex flex-row ring-blue-500 ring-2 h-3/4'>
         <div className='flex flex-col w-1/3 ring-1'>
@@ -94,13 +90,13 @@ function Room({ socket }) {
         <div className='flex flex-col w-2/3 ring-1'>
           <Messages messages={roomMessages} />
           <div className='flex flex-row mb-4 mx-4 justify-between'>
-            < Input
-              className='bg-[#1a1a1a] p-3 rounded-md w-10/12'
+            <input
+              className='p-3 w-10/12 ring-1'
               placeholder='Message'
               onChange={(e) => setMessage(e.target.value)}
             />
-            <Button
-              className='bg-[#1a1a1a] p-3 rounded-md w-2/12'
+            <button
+              className='p-3 w-2/12 ring-1'
               onClick={() => {
                 if (message !== '' && message.trim().length !== 0) {
                   const time = Date.now();
@@ -109,7 +105,7 @@ function Room({ socket }) {
                 }
               }}>
               Enter
-            </Button>
+            </button>
           </div>
         </div>
       </div>
