@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
     const disconnectedUser = users.filter((user) => user.id === socket.id);
 
     if (disconnectedUser.length > 0) {
-      const room = disconnectedUser.room;
+      const room = disconnectedUser[0].room;
       const updatedUsers = users.filter((user) => user.id !== socket.id);
       users = updatedUsers;
       const updatedUsersInCurRoom = updatedUsers.filter((user) => user.room === room).map((filteredUser) => filteredUser.username);
