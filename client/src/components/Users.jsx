@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { useNavigate } from 'react-router';
 
-function Users({ socket, curRoom, curUser, users }) {
+const Users = memo(function Users({ socket, curRoom, curUser, users }) {
   const navigate = useNavigate();
 
   return (
@@ -25,6 +26,6 @@ function Users({ socket, curRoom, curUser, users }) {
       </ul>
     </div>
   );
-}
+});
 
 export default Users
