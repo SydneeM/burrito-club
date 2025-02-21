@@ -40,7 +40,7 @@ function Home({ socket }) {
         Enter
       </Button>
     </div >
-  )
+  );
 }
 
 export default Home

@@ -1,6 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router'
 import { Button, Input } from '@headlessui/react'
+import Users from './Users';
+import History from './History';
+import Messages from './Messages';
 
 function Room({ socket }) {
   const [roomMessages, setRoomMessages] = useState([]);
@@ -14,11 +17,6 @@ function Room({ socket }) {
 
   const { state } = useLocation();
   const { username, room } = state;
-  const messagesEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
 
   useEffect(() => {
     const handleReceiveMessage = (data) => {
@@ -55,9 +53,6 @@ function Room({ socket }) {
     };
   }, [socket]);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [roomMessages]);
 
   return (
     <div className='h-[95vh]'>
@@ -94,41 +89,11 @@ function Room({ socket }) {
       </div>
       <div className='flex flex-row'>
         <div className='flex flex-col w-1/3 ring-1'>
-          <div className='flex flex-col'>
-            <h2 className='self-start'>Current Members:</h2>
-            <ul className='self-start'>
-              {roomUsers.map((user) => (
-                <li key={user} className='self-start text-left'>{user}</li>
-              ))}
-            </ul>
-          </div>
-          <div className='flex flex-col'>
-            <h2 className='self-start'>Restaurant History:</h2>
-            <ul className='self-start'>
-              {restaurantHistory.map((restaurant) => (
-                <li key={`${restaurant.name}-${restaurant.time}`} className='self-start text-left'>
-                  <span>{restaurant.name}</span>
-                  <span>{restaurant.buyer}</span>
-                  <span>{restaurant.time}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Users users={roomUsers} />
+          <History restaurants={restaurantHistory} />
         </div>
         <div className='flex flex-col w-2/3 ring-1'>
-          <div className='h-160 overflow-y-scroll'>
-            {roomMessages.map((messageInfo) => (
-              <div
-                className='flex flex-col p-2 m-4 ring-1'
-                key={`${messageInfo.username}-${messageInfo.time}`}
-              >
-                <span>{messageInfo.username}</span>
-                <span>{messageInfo.time}</span>
-                <span>{messageInfo.message}</span>
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
+          <Messages messages={roomMessages} />
           <div className='flex flex-row mb-4 mx-4 justify-between'>
             < Input
               className='bg-[#1a1a1a] p-3 rounded-md w-10/12'
@@ -150,7 +115,7 @@ function Room({ socket }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Room
