@@ -91,16 +91,18 @@ function Room({ socket }) {
           <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
           <History restaurants={restaurantHistory} />
         </div>
-        <div className='flex flex-col w-2/3 rounded-3xl m-4' id='messaging-area'>
+        <div className='flex flex-col w-2/3 rounded-3xl m-2' id='messaging-area'>
           <Messages messages={roomMessages} curUser={username} />
-          <div className='flex flex-row mb-4 mx-4 justify-between'>
+          <div className='flex flex-row mx-4 justify-between gap-x-2'>
             <input
-              className='p-3 w-10/12 ring-1'
+              className='p-3 w-10/12 rounded-3xl my-4'
+              id='msg-input'
               placeholder='Message'
               onChange={(e) => setMessage(e.target.value)}
             />
             <button
-              className='p-3 w-2/12 min-w-fit ring-1'
+              className='p-3 w-2/12 min-w-fit rounded-3xl my-4'
+              id='send-msg-btn'
               onClick={() => {
                 if (message !== '' && message.trim().length !== 0) {
                   const time = Date.now();
@@ -108,7 +110,7 @@ function Room({ socket }) {
                   socket.emit('send_message', state);
                 }
               }}>
-              Enter
+              Send
             </button>
           </div>
         </div>

@@ -39,4 +39,12 @@ body {
   justify-self: end;
 }
 
+#msg-input {
+  background-color: #fcfcfc;
+}
+
+#send-msg-btn {
+  background-color: #c7c9e0;
+}
+
 /* #cbe0f4,#9bc4e0,#e5e1eb,#e3d7e6,#c7c9e0 */
