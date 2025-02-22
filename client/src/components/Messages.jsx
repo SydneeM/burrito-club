@@ -12,10 +12,10 @@ function Messages({ messages }) {
   }, [messages]);
 
   return (
-    <div className='h-full overflow-y-scroll'>
+    <div className='h-full overflow-y-scroll' id='messages'>
       {messages.map((messageInfo) => (
         <div
-          className='flex flex-col p-2 m-4 ring-1'
+          className='flex flex-col p-2 m-4'
           key={`${messageInfo.username}-${messageInfo.time}`}
         >
           <span>{messageInfo.username}</span>

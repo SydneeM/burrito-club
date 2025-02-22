@@ -56,13 +56,13 @@ function Room({ socket }) {
   return (
     <div className='h-[95vh]'>
       <div className=''>
-        <h2 className='p-8'>{room} Club</h2>
+        <h1 className='p-8'>{room} Club</h1>
       </div>
-      <div className='flex flex-row ring-1 py-4 gap-x-8'>
+      <div className='flex flex-row py-4 gap-x-8' id='chosen-restaurant'>
         <h2 className=''>Restaurant of the Week: {restaurant}</h2>
         <h2 className=''>Who&apos;s Paying: {buyer}</h2>
       </div>
-      <div className='row row-flex my-4 justify-between'>
+      <div className='row row-flex my-4 justify-between' id='restaurant-input'>
         <input
           className='p-3 w-2/5 ring-1'
           placeholder='Restaurant of the Week'
@@ -86,14 +86,12 @@ function Room({ socket }) {
           Enter
         </button>
       </div>
-      <div className='flex flex-row ring-blue-500 ring-2 h-3/4'>
-        <div className='flex flex-col w-1/3 ring-1'>
-          {roomUsers.length > 0 &&
-            <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
-          }
+      <div className='flex flex-row h-3/4'>
+        <div className='flex flex-col w-1/3'>
+          <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
           <History restaurants={restaurantHistory} />
         </div>
-        <div className='flex flex-col w-2/3 ring-1'>
+        <div className='flex flex-col w-2/3' id='messaging-area'>
           <Messages messages={roomMessages} />
           <div className='flex flex-row mb-4 mx-4 justify-between'>
             <input

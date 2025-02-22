@@ -1,6 +1,6 @@
 function History({ restaurants }) {
   return (
-    <div className='flex flex-col h-3/4 overflow-scroll ring-1'>
+    <div className='flex flex-col h-3/4 overflow-scroll' id='history'>
       <h2 className='text-left'>Restaurant History:</h2>
       <ul className=''>
         {restaurants.map((restaurant) => (

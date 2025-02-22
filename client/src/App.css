@@ -2,4 +2,47 @@
   margin: 0 4rem;
   padding: 2rem;
   text-align: center;
+  background-color: #14142b;
+  color: white;
 }
+
+body {
+  background-color: #14142b;
+}
+
+#messages {
+  background-color: #24263a;
+  border-radius: 2rem;
+}
+
+#messaging-area {
+  background-color: #24263a;
+  margin: 1rem;
+  border-radius: 2rem;
+}
+
+#users-list {
+  background-color: #24263a;
+  margin: 1rem;
+  border-radius: 2rem;
+}
+
+#history{
+  background-color: #24263a;
+  margin: 1rem;
+  border-radius: 2rem;
+}
+
+#chosen-restaurant{
+  background-color: #24263a;
+  margin: 1rem;
+  border-radius: 2rem;
+}
+
+#restaurant-input{
+  background-color: #24263a;
+  margin: 1rem;
+  border-radius: 2rem;
+}
+
+/* #cbe0f4,#9bc4e0,#e5e1eb,#e3d7e6,#c7c9e0 */
