@@ -56,7 +56,7 @@ function Room({ socket }) {
   return (
     <div className='h-[95vh] flex flex-col'>
       <div className=''>
-        <h1 className='p-8'>{room} Club</h1>
+        <h1 className='p-8 m-8 font-bold text-6xl'>{room} Club</h1>
       </div>
       <div className='flex flex-row py-4 gap-x-8 rounded-3xl m-4' id='chosen-restaurant'>
         <h2 className=''>Restaurant of the Week: {restaurant}</h2>
@@ -95,7 +95,7 @@ function Room({ socket }) {
           <Messages messages={roomMessages} curUser={username} />
           <div className='flex flex-row mx-4 justify-between gap-x-2'>
             <input
-              className='p-3 w-10/12 rounded-3xl my-4'
+              className='p-3 w-10/12 rounded-3xl my-4 text-black'
               id='msg-input'
               placeholder='Message'
               onChange={(e) => setMessage(e.target.value)}

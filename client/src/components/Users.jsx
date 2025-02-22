@@ -6,7 +6,7 @@ const Users = memo(function Users({ socket, curRoom, curUser, users }) {
 
   return (
     <div className='flex flex-col h-1/4 rounded-3xl m-4' id='users-list'>
-      <div className='flex flex-row gap-x-2'>
+      {/* <div className='flex flex-row gap-x-2'>
         <h1 className='text-left'>Hello {curUser}</h1>
         <button
           className='min-w-fit ring-1'
@@ -17,8 +17,8 @@ const Users = memo(function Users({ socket, curRoom, curUser, users }) {
           }}>
           Leave
         </button>
-      </div>
-      <h2 className='text-left'>Current Members:</h2>
+      </div> */}
+      <h2 className='text-center font-semibold text-2xl m-2'>Current Members</h2>
       <ul className=''>
         {users.map((user) => (
           <li key={user} className='text-left'>{user}</li>
