@@ -27,7 +27,15 @@ body {
 }
 
 #restaurant-input{
-  background-color: #24263a;
+  background-color: #fcfcfc;
+}
+
+#restaurant-btn{
+  background-color: #c7c9e0;
+}
+
+#buyer-input {
+  background-color: #fcfcfc;
 }
 
 #cur-user-msg {

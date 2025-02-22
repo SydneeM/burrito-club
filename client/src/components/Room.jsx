@@ -62,19 +62,22 @@ function Room({ socket }) {
         <h2 className=''>Restaurant of the Week: {restaurant}</h2>
         <h2 className=''>Who&apos;s Paying: {buyer}</h2>
       </div>
-      <div className='row row-flex justify-between rounded-3xl m-4' id='restaurant-input'>
+      <div className='flex flex-row justify-between gap-x-2 rounded-3xl m-4'>
         <input
-          className='p-3 w-2/5 ring-1'
+          className='p-3 w-2/5 rounded-3xl my-4 text-black'
+          id='restaurant-input'
           placeholder='Restaurant of the Week'
           onChange={(e) => setSuggestedRestaurant(e.target.value)}
         />
         <input
-          className='p-3 w-2/5 ring-1'
+          className='p-3 w-2/5 rounded-3xl my-4 text-black'
+          id='buyer-input'
           placeholder='Buyer'
           onChange={(e) => setSuggestedBuyer(e.target.value)}
         />
         <button
-          className='p-3 w-1/5 ring-1'
+          className='p-3 w-1/5 rounded-3xl my-4 text-black'
+          id='restaurant-btn'
           onClick={() => {
             if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
               suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
@@ -83,7 +86,7 @@ function Room({ socket }) {
               socket.emit('choose_restaurant', state);
             }
           }}>
-          Enter
+          Let's Eat
         </button>
       </div>
       <div className='flex flex-row h-3/4'>
