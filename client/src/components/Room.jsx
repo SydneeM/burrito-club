@@ -77,7 +77,6 @@ function Room({ socket }) {
         />
         <button
           className='p-3 w-1/5 rounded-3xl'
-          id='restaurant-btn'
           onClick={() => {
             if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
               suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
@@ -105,7 +104,6 @@ function Room({ socket }) {
             />
             <button
               className='p-3 w-2/12 min-w-fit rounded-3xl my-4'
-              id='send-msg-btn'
               onClick={() => {
                 if (message !== '' && message.trim().length !== 0) {
                   const time = Date.now();

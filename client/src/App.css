@@ -22,6 +22,17 @@ li::marker {
   color: #16e02a;
 }
 
+button {
+  background-color: #c7c9e0;
+  color: black;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #cbe0f4;
+  color: black;
+}
+
 #messaging-area {
   background-color: #24263a;
 }
@@ -43,11 +54,6 @@ li::marker {
   color: black;
 }
 
-#restaurant-btn {
-  background-color: #c7c9e0;
-  color: black;
-}
-
 #buyer-input {
   background-color: #fcfcfc;
   color: black;
@@ -64,11 +70,6 @@ li::marker {
 
 #msg-input {
   background-color: #fcfcfc;
-  color: black;
-}
-
-#send-msg-btn {
-  background-color: #c7c9e0;
   color: black;
 }
 
