@@ -5,7 +5,7 @@ const Users = memo(function Users({ socket, curRoom, curUser, users }) {
   const navigate = useNavigate();
 
   return (
-    <div className='flex flex-col h-1/4 rounded-3xl m-4' id='users-list'>
+    <div className='flex flex-col h-1/2 rounded-3xl m-4 overflow-scroll' id='users-list'>
       {/* <div className='flex flex-row gap-x-2'>
         <h1 className='text-left'>Hello {curUser}</h1>
         <button
@@ -18,10 +18,10 @@ const Users = memo(function Users({ socket, curRoom, curUser, users }) {
           Leave
         </button>
       </div> */}
-      <h2 className='text-center font-semibold text-2xl m-2'>Current Members</h2>
-      <ul className=''>
+      <h2 className='text-left font-semibold text-2xl mx-4 mt-4 mb-2'>Current Members</h2>
+      <ul className='mx-4'>
         {users.map((user) => (
-          <li key={user} className='text-left'>{user}</li>
+          <li key={user} className='text-left mx-4'>{user}</li>
         ))}
       </ul>
     </div>

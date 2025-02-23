@@ -10,6 +10,18 @@ body {
   background-color: black;
 }
 
+ul {
+  list-style-type: disc;
+}
+
+li {
+  color: #e3d7e6;
+}
+
+li::marker {
+  color: #16e02a;
+}
+
 #messaging-area {
   background-color: #24263a;
 }
@@ -18,24 +30,27 @@ body {
   background-color: #24263a;
 }
 
-#history{
+#history {
   background-color: #24263a;
 }
 
-#chosen-restaurant{
+#chosen-restaurant {
   background-color: #24263a;
 }
 
-#restaurant-input{
+#restaurant-input {
   background-color: #fcfcfc;
+  color: black;
 }
 
-#restaurant-btn{
+#restaurant-btn {
   background-color: #c7c9e0;
+  color: black;
 }
 
 #buyer-input {
   background-color: #fcfcfc;
+  color: black;
 }
 
 #cur-user-msg {
@@ -49,10 +64,12 @@ body {
 
 #msg-input {
   background-color: #fcfcfc;
+  color: black;
 }
 
 #send-msg-btn {
   background-color: #c7c9e0;
+  color: black;
 }
 
 /* #cbe0f4,#9bc4e0,#e5e1eb,#e3d7e6,#c7c9e0 */

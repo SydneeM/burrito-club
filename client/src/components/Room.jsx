@@ -64,19 +64,19 @@ function Room({ socket }) {
       </div>
       <div className='flex flex-row justify-between gap-x-2 rounded-3xl m-4'>
         <input
-          className='p-3 w-2/5 rounded-3xl text-black'
+          className='p-3 w-2/5 rounded-3xl'
           id='restaurant-input'
           placeholder='Restaurant of the Week'
           onChange={(e) => setSuggestedRestaurant(e.target.value)}
         />
         <input
-          className='p-3 w-2/5 rounded-3xl text-black'
+          className='p-3 w-2/5 rounded-3xl'
           id='buyer-input'
           placeholder='Buyer'
           onChange={(e) => setSuggestedBuyer(e.target.value)}
         />
         <button
-          className='p-3 w-1/5 rounded-3xl text-black'
+          className='p-3 w-1/5 rounded-3xl'
           id='restaurant-btn'
           onClick={() => {
             if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
@@ -98,7 +98,7 @@ function Room({ socket }) {
           <Messages messages={roomMessages} curUser={username} />
           <div className='flex flex-row mx-4 justify-between gap-x-2'>
             <input
-              className='p-3 w-10/12 rounded-3xl my-4 text-black'
+              className='p-3 w-10/12 rounded-3xl my-4'
               id='msg-input'
               placeholder='Message'
               onChange={(e) => setMessage(e.target.value)}
