@@ -5,7 +5,7 @@ const Users = memo(function Users({ socket, curRoom, curUser, users }) {
   const navigate = useNavigate();
 
   return (
-    <div className='flex flex-col h-1/3 rounded-3xl m-4 overflow-scroll' id='users-list'>
+    <div className='h-1/3 card'>
       {/* <div className='flex flex-row gap-x-2'>
         <h1 className='text-left'>Hello {curUser}</h1>
         <button

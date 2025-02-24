@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router'
 import Users from './Users';
+import Choice from './Choice';
 import History from './History';
 import Messages from './Messages';
 
@@ -86,15 +87,11 @@ function Room({ socket }) {
       </div>
       <div className='flex flex-row h-3/4'>
         <div className='flex flex-col w-1/3'>
-          <div className='flex flex-col rounded-3xl m-4 h-1/3 overflow-scroll' id='chosen-restaurant'>
-            <h2 className=''>Restaurant of the Week</h2>
-            <p className='mx-4'>Restaurant: {restaurant}</p>
-            <p className='mx-4'>Who&apos;s Paying: {buyer}</p>
-          </div>
+          <Choice restaurant={restaurant} buyer={buyer} />
           <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
           <History restaurants={restaurantHistory} />
         </div>
-        <div className='flex flex-col w-2/3 rounded-3xl m-4' id='messaging-area'>
+        <div className='w-2/3 card'>
           <Messages messages={roomMessages} curUser={username} />
           <div className='flex flex-row mx-4 justify-between gap-x-2'>
             <input
