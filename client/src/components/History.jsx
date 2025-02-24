@@ -1,6 +1,6 @@
 function History({ restaurants }) {
   return (
-    <div className='h-1/3 card'>
+    <div className='md:h-1/3 card'>
       <h2 className=''>Restaurant History</h2>
       <div className='text-left flex flex-row overflow-x-scroll mx-2'>
         <span className='w-1/3 mx-2'>Restaurant</span>

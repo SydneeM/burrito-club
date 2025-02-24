@@ -85,7 +85,7 @@ function Room({ socket }) {
           Let&apos;s Eat
         </button>
       </div>
-      <div className='flex flex-col md:flex-row h-3/4'>
+      <div className='flex flex-col md:flex-row md:h-3/4'>
         <div className='flex flex-col md:w-1/2'>
           <Choice restaurant={restaurant} buyer={buyer} />
           <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
