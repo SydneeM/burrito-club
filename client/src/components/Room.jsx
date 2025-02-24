@@ -82,16 +82,16 @@ function Room({ socket }) {
               socket.emit('choose_restaurant', state);
             }
           }}>
-          Let's Eat
+          Let&apos;s Eat
         </button>
       </div>
-      <div className='flex flex-row h-3/4'>
-        <div className='flex flex-col w-1/3'>
+      <div className='flex flex-col md:flex-row h-3/4'>
+        <div className='flex flex-col md:w-1/2'>
           <Choice restaurant={restaurant} buyer={buyer} />
           <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
           <History restaurants={restaurantHistory} />
         </div>
-        <div className='w-2/3 card'>
+        <div className='md:w-1/2 card'>
           <Messages messages={roomMessages} curUser={username} />
           <div className='flex flex-row mx-4 justify-between gap-x-2'>
             <input

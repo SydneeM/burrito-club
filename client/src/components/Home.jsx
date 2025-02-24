@@ -37,7 +37,7 @@ function Home({ socket }) {
             if (username !== '' && username.trim().length !== 0 && room.name !== '') {
               const state = { username, room: room.name };
               socket.emit('join_room', state);
-              navigate('/room', { state });
+              navigate('/room', { replace: true, state });
             }
           }}>
           Enter

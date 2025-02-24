@@ -47,7 +47,6 @@ button:hover {
 .card {
   display: flex;
   flex-direction: column;
-  overflow: scroll;
   border-radius: 20px;
   margin: 1rem;
   background-color: #24263a;
