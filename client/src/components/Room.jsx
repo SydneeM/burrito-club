@@ -58,10 +58,6 @@ function Room({ socket }) {
       <div className=''>
         <h1 className='p-8 m-8 font-bold text-6xl'>{room} Club</h1>
       </div>
-      <div className='flex flex-row py-4 gap-x-8 rounded-3xl m-4' id='chosen-restaurant'>
-        <h2 className=''>Restaurant of the Week: {restaurant}</h2>
-        <h2 className=''>Who&apos;s Paying: {buyer}</h2>
-      </div>
       <div className='flex flex-row justify-between gap-x-2 rounded-3xl m-4'>
         <input
           className='p-3 w-2/5 rounded-3xl'
@@ -90,6 +86,11 @@ function Room({ socket }) {
       </div>
       <div className='flex flex-row h-3/4'>
         <div className='flex flex-col w-1/3'>
+          <div className='flex flex-col rounded-3xl m-4 h-1/3 overflow-scroll' id='chosen-restaurant'>
+            <h2 className=''>Restaurant of the Week</h2>
+            <p className='mx-4'>Restaurant: {restaurant}</p>
+            <p className='mx-4'>Who&apos;s Paying: {buyer}</p>
+          </div>
           <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
           <History restaurants={restaurantHistory} />
         </div>
