@@ -10,12 +10,12 @@
   width: 0.5rem;
 }
 
- ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #24263a;
 }
 
- ::-webkit-scrollbar-thumb {
-  background: #e3d7e6;
+::-webkit-scrollbar-thumb {
+  background: #c7c9e0;
   border-radius: 0.5rem;
 }
 
@@ -95,6 +95,10 @@ button:hover {
 #msg-input {
   background-color: #fcfcfc;
   color: black;
+}
+
+#history {
+  color: #e3d7e6;
 }
 
 /* #cbe0f4,#9bc4e0,#e5e1eb,#e3d7e6,#c7c9e0 */

@@ -1,21 +1,21 @@
 function History({ restaurants }) {
   return (
-    <div className='md:h-1/3 card'>
+    <div className='md:h-1/3 card overflow-y-scroll'>
       <h2 className=''>Restaurant History</h2>
-      <div className='text-left flex flex-row overflow-x-scroll'>
-        <span className='w-1/3'>Restaurant</span>
-        <span className='w-1/3'>Buyer</span>
-        <span className='w-1/3'>Date</span>
-      </div>
-      <ul className=''>
+      <div className="flex flex-col">
+        <div className='grid grid-cols-3 text-start'>
+          <span className='font-semibold text-lg'>Restaurant</span>
+          <span className='font-semibold text-lg'>Buyer</span>
+          <span className='font-semibold text-lg'>Date</span>
+        </div>
         {restaurants.map((restaurant) => (
-          <li key={`${restaurant.name}-${restaurant.time}`} className='text-left flex flex-row overflow-x-scroll'>
-            <span className='w-1/3'>{restaurant.name}</span>
-            <span className='w-1/3'>{restaurant.buyer}</span>
-            <span className='w-1/3'>{new Date(restaurant.time).toLocaleDateString()}</span>
-          </li>
+          <div key={`${restaurant.name}-${restaurant.time}`} className='grid grid-cols-3 text-start' id='history'>
+            <span className=''>{restaurant.name}</span>
+            <span className=''>{restaurant.buyer}</span>
+            <span className=''>{new Date(restaurant.time).toLocaleDateString()}</span>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
