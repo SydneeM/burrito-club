@@ -19,7 +19,7 @@ const Users = memo(function Users({ socket, curRoom, curUser, users }) {
         </button>
       </div> */}
       <h2 className=''>Current Members</h2>
-      <ul className='mx-4'>
+      <ul className=''>
         {users.map((user) => (
           <li key={user} className='text-left mx-4'>{user}</li>
         ))}

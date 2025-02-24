@@ -14,7 +14,6 @@ h2 {
   font-size: x-large;
   font-weight: bold;
   text-align: start;
-  margin: 1rem 1rem 0.5rem 1rem;
 }
 
 p {
@@ -49,23 +48,16 @@ button:hover {
   flex-direction: column;
   border-radius: 20px;
   margin: 1rem;
-  background-color: #24263a;
-}
-
-#messaging-area {
-  background-color: #24263a;
-}
-
-#users-list {
-  background-color: #24263a;
-}
-
-#history {
+  padding: 0.5rem 1rem;
   background-color: #24263a;
 }
 
 #chosen-restaurant {
-  background-color: #24263a;
+  color: #e3d7e6;
+}
+
+#chosen-buyer {
+  color: #e3d7e6;
 }
 
 #restaurant-input {
