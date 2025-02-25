@@ -4,12 +4,12 @@ import Users from './Users';
 import Choice from './Choice';
 import History from './History';
 import Messages from './Messages';
+import MessageSender from './MessageSender';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { StarIcon, ClockIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 function Room({ socket }) {
   const [roomMessages, setRoomMessages] = useState([]);
-  const [message, setMessage] = useState('');
   const [roomUsers, setRoomUsers] = useState([]);
   const [suggestedRestaurant, setSuggestedRestaurant] = useState('');
   const [suggestedBuyer, setSuggestedBuyer] = useState('');
@@ -97,25 +97,7 @@ function Room({ socket }) {
           <div className='p-2 ring-1'>{`${room} Chat`}</div>
           <div className='flex flex-col grow overflow-auto'>
             <Messages messages={roomMessages} curUser={username} />
-            <div className='flex flex-row mx-4 justify-between gap-x-2 h-1/6'>
-              <input
-                className='p-3 w-10/12 rounded-3xl my-4'
-                id='msg-input'
-                placeholder='Message'
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <button
-                className='p-3 w-2/12 min-w-fit rounded-3xl my-4'
-                onClick={() => {
-                  if (message !== '' && message.trim().length !== 0) {
-                    const time = Date.now();
-                    const state = { message, username, room, time, };
-                    socket.emit('send_message', state);
-                  }
-                }}>
-                Send
-              </button>
-            </div>
+            <MessageSender socket={socket} curRoom={room} curUser={username} />
           </div>
         </div>
 
