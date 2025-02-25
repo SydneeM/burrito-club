@@ -67,15 +67,15 @@ io.on('connection', (socket) => {
   });
 
   socket.on('choose_restaurant', data => {
-    const { suggestedBuyer, suggestedRestaurant, room, time } = data;
+    const { buyer, restaurant, room, time } = data;
     io.to(room).emit('restaurant_info', {
-      buyer: suggestedBuyer,
-      name: suggestedRestaurant,
+      buyer,
+      name: restaurant,
     });
 
     const curRestaurant = {
-      buyer: suggestedBuyer,
-      name: suggestedRestaurant,
+      buyer,
+      name: restaurant,
       room,
       time,
     }

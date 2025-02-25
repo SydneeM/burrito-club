@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Users from './Users';
 import Choice from './Choice';
+import ChoiceSender from './ChoiceSender';
 import History from './History';
 import Messages from './Messages';
 import MessageSender from './MessageSender';
@@ -11,8 +12,6 @@ import { StarIcon, ClockIcon, UsersIcon } from '@heroicons/react/24/outline';
 function Room({ socket }) {
   const [roomMessages, setRoomMessages] = useState([]);
   const [roomUsers, setRoomUsers] = useState([]);
-  const [suggestedRestaurant, setSuggestedRestaurant] = useState('');
-  const [suggestedBuyer, setSuggestedBuyer] = useState('');
   const [restaurant, setRestaurant] = useState('');
   const [restaurantHistory, setRestaurantHistory] = useState([]);
   const [buyer, setBuyer] = useState('');
@@ -103,32 +102,7 @@ function Room({ socket }) {
 
         <div className='flex flex-col w-[40vw] ring-1'>
           <div className='p-2 ring-1'>Restaurant Selection</div>
-          <div className='flex flex-col p-4 gap-y-2 grow'>
-            <input
-              className='p-3 rounded-3xl'
-              id='restaurant-input'
-              placeholder='Restaurant of the Week'
-              onChange={(e) => setSuggestedRestaurant(e.target.value)}
-            />
-            <input
-              className='p-3 rounded-3xl'
-              id='buyer-input'
-              placeholder='Buyer'
-              onChange={(e) => setSuggestedBuyer(e.target.value)}
-            />
-            <button
-              className='p-3 rounded-3xl'
-              onClick={() => {
-                if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
-                  suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
-                  const time = Date.now();
-                  const state = { suggestedBuyer, suggestedRestaurant, room, time, };
-                  socket.emit('choose_restaurant', state);
-                }
-              }}>
-              Let&apos;s Eat
-            </button>
-          </div>
+          <ChoiceSender socket={socket} curRoom={room} />
         </div>
 
       </div>
