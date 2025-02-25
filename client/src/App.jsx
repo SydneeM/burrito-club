@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import Home from './components/Home'
 import Room from './components/Room'
@@ -8,12 +8,12 @@ const socket = io.connect('http://localhost:4000');
 
 function App() {
   return (
-    <div>
+    <Router>
       <Routes>
-        <Route index element={<Home socket={socket} />} />
+        <Route path='/' element={<Home socket={socket} />} />
         <Route path='room' element={<Room socket={socket} />} />
       </Routes>
-    </div>
+    </Router>
   )
 }
 

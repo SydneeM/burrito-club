@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const Users = memo(function Users({ socket, curRoom, curUser, users }) {
   const navigate = useNavigate();
