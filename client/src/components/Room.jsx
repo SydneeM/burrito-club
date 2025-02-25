@@ -77,7 +77,7 @@ function Room({ socket }) {
                   <UsersIcon className="size-10 text-blue-500" />
                 </Tab>
               </TabList>
-              <TabPanels className='p-4 w-[25vw]'>
+              <TabPanels className='p-4 md:w-[25vw]'>
                 <TabPanel>
                   <Choice restaurant={restaurant} buyer={buyer} />
                 </TabPanel>
@@ -92,7 +92,7 @@ function Room({ socket }) {
           </TabGroup>
         </div>
 
-        <div className='flex flex-col ring-1'>
+        <div className='flex flex-col ring-1 md:grow'>
           <div className='p-2 ring-1'>{`${room} Chat`}</div>
           <div className='flex flex-col h-full overflow-auto'>
             <Messages messages={roomMessages} curUser={username} />
@@ -100,7 +100,7 @@ function Room({ socket }) {
           </div>
         </div>
 
-        <div className='flex flex-col w-[40vw] ring-1'>
+        <div className='flex flex-col md:w-[25vw] ring-1'>
           <div className='p-2 ring-1'>Restaurant Selection</div>
           <ChoiceSender socket={socket} curRoom={room} />
         </div>

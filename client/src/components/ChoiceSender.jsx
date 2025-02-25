@@ -9,7 +9,7 @@ const ChoiceSender = memo(function ChoiceSender({ socket, curRoom }) {
       <input
         className='p-3 rounded-3xl'
         id='restaurant-input'
-        placeholder='Restaurant of the Week'
+        placeholder='Restaurant'
         onChange={(e) => setRestaurant(e.target.value)}
       />
       <input
