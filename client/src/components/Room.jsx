@@ -94,7 +94,7 @@ function Room({ socket }) {
 
         <div className='flex flex-col ring-1'>
           <div className='p-2 ring-1'>{`${room} Chat`}</div>
-          <div className='flex flex-col grow overflow-auto'>
+          <div className='flex flex-col h-full overflow-auto'>
             <Messages messages={roomMessages} curUser={username} />
             <MessageSender socket={socket} curRoom={room} curUser={username} />
           </div>
