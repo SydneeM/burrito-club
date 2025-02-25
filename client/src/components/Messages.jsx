@@ -12,7 +12,7 @@ function Messages({ messages, curUser }) {
   }, [messages]);
 
   return (
-    <div className='h-[30vh] md:h-5/6 overflow-y-scroll' id='messages'>
+    <div className='h-[30vh] md:grow overflow-y-scroll' id='messages'>
       {messages.map((messageInfo) => (
         <div
           className='flex flex-col p-2 m-4 rounded-2xl w-fit max-w-3/4 break-words text-black'
