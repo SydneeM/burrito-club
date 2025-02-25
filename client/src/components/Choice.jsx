@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 const Choice = memo(function Choice({ restaurant, buyer }) {
   return (
-    <div className='card'>
+    <div className=''>
       <h2 className=''>Restaurant of the Week</h2>
       <div className='flex flex-row items-baseline'>
         <span className='font-semibold text-lg'>Restaurant - </span>

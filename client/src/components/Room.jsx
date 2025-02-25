@@ -4,6 +4,8 @@ import Users from './Users';
 import Choice from './Choice';
 import History from './History';
 import Messages from './Messages';
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
+import { StarIcon, ClockIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 function Room({ socket }) {
   const [roomMessages, setRoomMessages] = useState([]);
@@ -59,60 +61,94 @@ function Room({ socket }) {
       <div className=''>
         <h1 className='p-8 m-8 font-bold text-6xl'>{room} Club</h1>
       </div>
-      <div className='flex flex-row justify-between gap-x-2 rounded-3xl m-4'>
-        <input
-          className='p-3 w-2/5 rounded-3xl'
-          id='restaurant-input'
-          placeholder='Restaurant of the Week'
-          onChange={(e) => setSuggestedRestaurant(e.target.value)}
-        />
-        <input
-          className='p-3 w-2/5 rounded-3xl'
-          id='buyer-input'
-          placeholder='Buyer'
-          onChange={(e) => setSuggestedBuyer(e.target.value)}
-        />
-        <button
-          className='p-3 w-1/5 rounded-3xl'
-          onClick={() => {
-            if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
-              suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
-              const time = Date.now();
-              const state = { suggestedBuyer, suggestedRestaurant, room, time, };
-              socket.emit('choose_restaurant', state);
-            }
-          }}>
-          Let&apos;s Eat
-        </button>
-      </div>
-      <div className='flex flex-col md:flex-row md:h-3/4'>
-        <div className='flex flex-col md:w-1/2'>
-          <Choice restaurant={restaurant} buyer={buyer} />
-          <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
-          <History restaurants={restaurantHistory} />
+      <div className='flex flex-col md:flex-row md:h-3/4 ring-1'>
+
+        <div className='flex flex-col ring-1'>
+          <div className='p-2 ring-1'>{`Hello ${username}`}</div>
+          <TabGroup vertical className='h-full'>
+            <div className='flex flex-row h-full'>
+              <TabList className="flex flex-col p-4 gap-y-4 ring-1">
+                <Tab className='flex flex-row gap-x-2'>
+                  <StarIcon className="size-10 text-blue-500" />
+                </Tab>
+                <Tab className='flex flex-row gap-x-2'>
+                  <ClockIcon className="size-10 text-blue-500" />
+                </Tab>
+                <Tab className='flex flex-row gap-x-2'>
+                  <UsersIcon className="size-10 text-blue-500" />
+                </Tab>
+              </TabList>
+              <TabPanels className='p-4 w-[25vw]'>
+                <TabPanel>
+                  <Choice restaurant={restaurant} buyer={buyer} />
+                </TabPanel>
+                <TabPanel>
+                  <History restaurants={restaurantHistory} />
+                </TabPanel>
+                <TabPanel>
+                  <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
+                </TabPanel>
+              </TabPanels>
+            </div>
+          </TabGroup>
         </div>
-        <div className='md:w-1/2 card'>
-          <Messages messages={roomMessages} curUser={username} />
-          <div className='flex flex-row mx-4 justify-between gap-x-2'>
+
+        <div className='flex flex-col ring-1'>
+          <div className='p-2 ring-1'>{`${room} Chat`}</div>
+          <div className='flex flex-col grow overflow-auto'>
+            <Messages messages={roomMessages} curUser={username} />
+            <div className='flex flex-row mx-4 justify-between gap-x-2 h-1/6'>
+              <input
+                className='p-3 w-10/12 rounded-3xl my-4'
+                id='msg-input'
+                placeholder='Message'
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <button
+                className='p-3 w-2/12 min-w-fit rounded-3xl my-4'
+                onClick={() => {
+                  if (message !== '' && message.trim().length !== 0) {
+                    const time = Date.now();
+                    const state = { message, username, room, time, };
+                    socket.emit('send_message', state);
+                  }
+                }}>
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className='flex flex-col w-[40vw] ring-1'>
+          <div className='p-2 ring-1'>Restaurant Selection</div>
+          <div className='flex flex-col p-4 gap-y-2 grow'>
             <input
-              className='p-3 w-10/12 rounded-3xl my-4'
-              id='msg-input'
-              placeholder='Message'
-              onChange={(e) => setMessage(e.target.value)}
+              className='p-3 rounded-3xl'
+              id='restaurant-input'
+              placeholder='Restaurant of the Week'
+              onChange={(e) => setSuggestedRestaurant(e.target.value)}
+            />
+            <input
+              className='p-3 rounded-3xl'
+              id='buyer-input'
+              placeholder='Buyer'
+              onChange={(e) => setSuggestedBuyer(e.target.value)}
             />
             <button
-              className='p-3 w-2/12 min-w-fit rounded-3xl my-4'
+              className='p-3 rounded-3xl'
               onClick={() => {
-                if (message !== '' && message.trim().length !== 0) {
+                if (suggestedRestaurant !== '' && suggestedRestaurant.trim().length !== 0 &&
+                  suggestedBuyer !== '' && suggestedBuyer.trim().length !== 0) {
                   const time = Date.now();
-                  const state = { message, username, room, time, };
-                  socket.emit('send_message', state);
+                  const state = { suggestedBuyer, suggestedRestaurant, room, time, };
+                  socket.emit('choose_restaurant', state);
                 }
               }}>
-              Send
+              Let&apos;s Eat
             </button>
           </div>
         </div>
+
       </div>
     </div>
   );
