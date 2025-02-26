@@ -12,16 +12,16 @@ function Messages({ messages, curUser }) {
   }, [messages]);
 
   return (
-    <div className='h-[30vh] md:grow overflow-y-scroll'>
+    <div className='h-[30vh] grow overflow-y-scroll'>
       {messages.map((messageInfo) => (
         <div
           className='flex flex-col p-2 m-4 rounded-2xl w-fit max-w-3/4 break-words text-black'
           id={curUser === messageInfo.username ? 'cur-user-msg' : 'other-user-msg'}
           key={`${messageInfo.username}-${messageInfo.time}`}
         >
-          <span>{messageInfo.username}</span>
-          <span>{messageInfo.time}</span>
-          <span className='text-left'>{messageInfo.message}</span>
+          <p>{messageInfo.username}</p>
+          <p>{messageInfo.time}</p>
+          <p className='text-left'>{messageInfo.message}</p>
         </div>
       ))}
       <div ref={messagesEndRef} />
