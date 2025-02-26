@@ -1,8 +1,8 @@
 #root {
-  margin: 0;
-  padding: 4rem;
+  /* margin: 0;
+  padding: 4rem; */
   text-align: center;
-  background-color: black;
+  background-color: #1b1c1c;
   color: white;
 }
 
@@ -54,13 +54,13 @@ li::marker {
   color: #16e02a;
 }
 
-button {
+.submit-btn {
   background-color: #c7c9e0;
   color: black;
   cursor: pointer;
 }
 
-button:hover {
+.submit-btn:hover {
   background-color: #cbe0f4;
   color: black;
 }

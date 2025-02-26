@@ -13,7 +13,7 @@ const MessageSender = memo(function MessageSender({ socket, curRoom, curUser }) 
         onChange={(e) => setMessage(e.target.value)}
       />
       <button
-        className='p-3 w-2/12 min-w-fit rounded-3xl my-4'
+        className='p-3 w-2/12 min-w-fit rounded-3xl my-4 submit-btn'
         onClick={() => {
           if (message !== '' && message.trim().length !== 0) {
             const time = Date.now();

@@ -19,7 +19,7 @@ const ChoiceSender = memo(function ChoiceSender({ socket, curRoom }) {
         onChange={(e) => setBuyer(e.target.value)}
       />
       <button
-        className='p-3 rounded-3xl'
+        className='p-3 rounded-3xl submit-btn'
         onClick={() => {
           if (restaurant !== '' && restaurant.trim().length !== 0 &&
             buyer !== '' && buyer.trim().length !== 0) {
