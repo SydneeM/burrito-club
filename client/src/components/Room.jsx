@@ -56,24 +56,27 @@ function Room({ socket }) {
   }, [socket]);
 
   return (
-      <div className='flex flex-col md:flex-row md:gap-x-6 gap-y-4 h-screen'>
+      <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-screen'>
 
         <div className='flex flex-col'>
           {/* <div className='p-2'>{`Hello ${username}`}</div> */}
           <TabGroup className='h-full'>
-            <div className='flex flex-col md:flex-row md:gap-x-6 gap-y-4 h-full'>
-              <TabList className='flex flex-row md:flex-col gap-x-4 md:gap-y-4 p-4 bg-[#282b31] rounded-xl'>
-                <Tab className='flex flex-row gap-x-2'>
+            <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-full'>
+              <TabList className='flex flex-row md:flex-col gap-x-4 md:gap-y-4 p-4 md:p-10 border-b-1 md:border-r-1 border-gray-700'>
+                <Tab className='flex flex-row gap-x-2 items-center'>
                   <StarIcon className='size-10 text-blue-500' />
+                  <span className='hidden sm:block'>Restaurant of the Week</span>
                 </Tab>
-                <Tab className='flex flex-row gap-x-2'>
+                <Tab className='flex flex-row gap-x-2 items-center'>
                   <ClockIcon className='size-10 text-blue-500' />
+                  <span className='hidden sm:block'>Restaurant History</span>
                 </Tab>
-                <Tab className='flex flex-row gap-x-2'>
+                <Tab className='flex flex-row gap-x-2 items-center'>
                   <UsersIcon className='size-10 text-blue-500' />
+                  <span className='hidden sm:block'>Current Members</span>
                 </Tab>
               </TabList>
-              <TabPanels className='p-4 md:w-[25vw] w-full bg-[#282b31] rounded-xl'>
+              <TabPanels className='p-4 md:w-[25vw] w-full bg-[#282b31] rounded-xl md:my-10'>
                 <TabPanel>
                   <Choice restaurant={restaurant} buyer={buyer} />
                 </TabPanel>
@@ -88,7 +91,7 @@ function Room({ socket }) {
           </TabGroup>
         </div>
 
-        <div className='flex flex-col md:grow bg-[#282b31] rounded-xl'>
+        <div className='flex flex-col md:grow bg-[#282b31] rounded-xl md:my-10'>
           {/* <div className='p-2'>{`${room} Chat`}</div> */}
           <div className='flex flex-col h-full overflow-auto'>
             <Messages messages={roomMessages} curUser={username} />
@@ -96,7 +99,7 @@ function Room({ socket }) {
           </div>
         </div>
 
-        <div className='flex flex-col md:w-[25vw] bg-[#282b31] rounded-xl'>
+        <div className='flex flex-col md:w-[20vw] bg-[#282b31] rounded-xl md:my-10 md:mr-10'>
           {/* <div className='p-2'>Restaurant Selection</div> */}
           <ChoiceSender socket={socket} curRoom={room} />
         </div>
