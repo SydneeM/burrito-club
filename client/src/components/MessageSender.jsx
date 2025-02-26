@@ -4,7 +4,7 @@ const MessageSender = memo(function MessageSender({ socket, curRoom, curUser }) 
   const [message, setMessage] = useState('');
 
   return (
-    <div className='flex flex-row mx-4 justify-between gap-x-2 h-fit'>
+    <div className='flex flex-row px-4 justify-between gap-x-2 h-fit'>
       <input
         className='p-3 w-10/12 rounded-3xl my-4'
         id='msg-input'

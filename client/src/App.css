@@ -24,6 +24,7 @@ body {
 }
 
 h3 {
+  text-align: start;
   font-size: x-large;
   font-weight: bold;
   text-align: start;

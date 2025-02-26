@@ -77,32 +77,33 @@ function Room({ socket }) {
                   <span className='hidden sm:block'>Current Members</span>
                 </Tab>
               </TabList>
-              <TabPanels className='p-4 md:w-[25vw] w-full bg-[#282b31] rounded-xl md:my-10'>
-                <TabPanel>
-                  <Choice restaurant={restaurant} buyer={buyer} />
-                </TabPanel>
-                <TabPanel>
-                  <History restaurants={restaurantHistory} />
-                </TabPanel>
-                <TabPanel>
-                  <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
-                </TabPanel>
-              </TabPanels>
+              <div className='flex flex-col md:w-[30vw] md:my-10 gap-y-4 md:gap-y-10 w-full'>
+                <TabPanels className='p-4 bg-[#282b31] rounded-xl md:grow'>
+                  <TabPanel>
+                    <Choice restaurant={restaurant} buyer={buyer} />
+                  </TabPanel>
+                  <TabPanel>
+                    <History restaurants={restaurantHistory} />
+                  </TabPanel>
+                  <TabPanel>
+                    <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
+                  </TabPanel>
+                </TabPanels>
+                <div className='p-4 bg-[#282b31] rounded-xl md:grow'>
+                  <h3>Restaurant Selection</h3>
+                  <ChoiceSender socket={socket} curRoom={room} />
+                </div>
+              </div>
             </div>
           </TabGroup>
         </div>
 
-        <div className='flex flex-col grow bg-[#282b31] rounded-xl md:my-10'>
+        <div className='flex flex-col grow bg-[#282b31] rounded-xl md:my-10 md:mr-10'>
           {/* <div className='p-2'>{`${room} Chat`}</div> */}
           <div className='flex flex-col h-full overflow-auto'>
             <Messages messages={roomMessages} curUser={username} />
             <MessageSender socket={socket} curRoom={room} curUser={username} />
           </div>
-        </div>
-
-        <div className='flex flex-col md:w-[20vw] bg-[#282b31] rounded-xl md:my-10 md:mr-10'>
-          {/* <div className='p-2'>Restaurant Selection</div> */}
-          <ChoiceSender socket={socket} curRoom={room} />
         </div>
 
       </div>
