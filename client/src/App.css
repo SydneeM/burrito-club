@@ -23,14 +23,23 @@ body {
   background-color: black;
 }
 
-h2 {
+h3 {
   font-size: x-large;
   font-weight: bold;
   text-align: start;
 }
 
+h4 {
+  font-size: large;
+  font-weight: 500;
+}
+
 p {
   text-align: start;
+}
+
+span {
+  color: #e3d7e6;
 }
 
 ul {
@@ -65,14 +74,6 @@ button:hover {
   background-color: #24263a;
 }
 
-#chosen-restaurant {
-  color: #e3d7e6;
-}
-
-#chosen-buyer {
-  color: #e3d7e6;
-}
-
 #restaurant-input {
   background-color: #fcfcfc;
   color: black;
@@ -95,10 +96,6 @@ button:hover {
 #msg-input {
   background-color: #fcfcfc;
   color: black;
-}
-
-#history {
-  color: #e3d7e6;
 }
 
 /* #cbe0f4,#9bc4e0,#e5e1eb,#e3d7e6,#c7c9e0 */
