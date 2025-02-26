@@ -64,17 +64,17 @@ function Room({ socket }) {
             <TabList className='flex flex-row md:flex-col gap-x-4 md:gap-y-4 p-4 md:px-10 border-b-1 md:border-r-1 border-gray-700'>
               <div className='items-center'>{`${room} Club`}</div>
               <div className='items-center'>{`Hello ${username}`}</div>
-              <Tab className='flex flex-row gap-x-2 items-center'>
-                <StarIcon className='size-8 text-blue-500' />
-                <span className='hidden sm:block text-nowrap'>Restaurant of the Week</span>
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:text-[#c7c9e0]'>
+                <StarIcon className='size-8' />
+                <div className='hidden sm:block text-nowrap menu-text'>Restaurant of the Week</div>
               </Tab>
-              <Tab className='flex flex-row gap-x-2 items-center'>
-                <ClockIcon className='size-8 text-blue-500' />
-                <span className='hidden sm:block text-nowrap'>Restaurant History</span>
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:text-[#c7c9e0]'>
+                <ClockIcon className='size-8' />
+                <div className='hidden sm:block text-nowrap menu-text'>Restaurant History</div>
               </Tab>
-              <Tab className='flex flex-row gap-x-2 items-center'>
-                <UsersIcon className='size-8 text-blue-500' />
-                <span className='hidden sm:block text-nowrap'>Current Members</span>
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:text-[#c7c9e0]'>
+                <UsersIcon className='size-8' />
+                <div className='hidden sm:block text-nowrap menu-text'>Current Members</div>
               </Tab>
             </TabList>
             <div className='flex flex-col md:w-[30vw] md:my-10 gap-y-4 md:gap-y-10 w-full'>

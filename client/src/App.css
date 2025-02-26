@@ -74,6 +74,15 @@ li::marker {
   background-color: #24263a;
 }
 
+.menu-btn:hover {
+  color: #cbe0f4;
+}
+
+.menu-text {
+  font-size: large;
+  font-weight: 400;
+}
+
 #restaurant-input {
   background-color: #fcfcfc;
   color: black;
