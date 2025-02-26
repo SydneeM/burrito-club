@@ -78,7 +78,7 @@ function Room({ socket }) {
               </Tab>
             </TabList>
             <div className='flex flex-col md:w-[30vw] md:my-10 gap-y-4 md:gap-y-10 w-full'>
-              <TabPanels className='p-4 bg-[#282b31] rounded-3xl md:grow'>
+              <TabPanels className='p-4 md:p-8 bg-[#282b31] rounded-3xl md:grow'>
                 <TabPanel>
                   <Choice restaurant={restaurant} buyer={buyer} />
                 </TabPanel>
@@ -89,8 +89,8 @@ function Room({ socket }) {
                   <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
                 </TabPanel>
               </TabPanels>
-              <div className='p-4 bg-[#282b31] rounded-3xl md:grow'>
-                <h3>Restaurant Selection</h3>
+              <div className='p-4 md:p-8 bg-[#282b31] rounded-3xl md:grow'>
+                <h3 className='ring-1'>Restaurant Selection</h3>
                 <ChoiceSender socket={socket} curRoom={room} />
               </div>
             </div>
@@ -98,9 +98,9 @@ function Room({ socket }) {
         </TabGroup>
       </div>
 
-      <div className='flex flex-col grow bg-[#282b31] rounded-3xl md:my-10 md:mr-10'>
+      <div className='flex flex-col grow bg-[#282b31] rounded-3xl md:my-10 md:mr-10 p-4 md:p-8'>
         {/* <div className='p-2'>{`${room} Chat`}</div> */}
-        <div className='flex flex-col h-full overflow-auto'>
+        <div className='flex flex-col h-full overflow-auto ring-1'>
           <Messages messages={roomMessages} curUser={username} />
           <MessageSender socket={socket} curRoom={room} curUser={username} />
         </div>
