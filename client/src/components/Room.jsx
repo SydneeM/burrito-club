@@ -62,8 +62,8 @@ function Room({ socket }) {
         <TabGroup className='h-full'>
           <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-full'>
             <TabList className='flex flex-row md:flex-col gap-x-4 md:gap-y-4 p-4 md:px-10 border-b-1 md:border-r-1 border-gray-700'>
-              <div className='items-center'>{`${room} Club`}</div>
-              <div className='items-center'>{`Hello ${username}`}</div>
+              <h1 className='text-start text-5xl'>{`${room} Club`}</h1>
+              <h3>{`Hello ${username}`}</h3>
               <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:text-[#c7c9e0]'>
                 <StarIcon className='size-8' />
                 <div className='hidden sm:block text-nowrap menu-text'>Restaurant of the Week</div>
