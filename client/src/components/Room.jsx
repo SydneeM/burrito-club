@@ -64,20 +64,20 @@ function Room({ socket }) {
 
         <div className='flex flex-col ring-1'>
           <div className='p-2 ring-1'>{`Hello ${username}`}</div>
-          <TabGroup vertical className='h-full'>
-            <div className='flex flex-row h-full'>
-              <TabList className="flex flex-col p-4 gap-y-4 ring-1">
+          <TabGroup className='h-full'>
+            <div className='flex flex-col md:flex-row h-full'>
+              <TabList className='flex flex-row md:flex-col gap-x-4 md:gap-y-4 p-4 ring-1'>
                 <Tab className='flex flex-row gap-x-2'>
-                  <StarIcon className="size-10 text-blue-500" />
+                  <StarIcon className='size-10 text-blue-500' />
                 </Tab>
                 <Tab className='flex flex-row gap-x-2'>
-                  <ClockIcon className="size-10 text-blue-500" />
+                  <ClockIcon className='size-10 text-blue-500' />
                 </Tab>
                 <Tab className='flex flex-row gap-x-2'>
-                  <UsersIcon className="size-10 text-blue-500" />
+                  <UsersIcon className='size-10 text-blue-500' />
                 </Tab>
               </TabList>
-              <TabPanels className='p-4 md:w-[25vw]'>
+              <TabPanels className='p-4 md:w-[25vw] w-full'>
                 <TabPanel>
                   <Choice restaurant={restaurant} buyer={buyer} />
                 </TabPanel>
