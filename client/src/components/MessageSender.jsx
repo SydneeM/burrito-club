@@ -4,16 +4,16 @@ const MessageSender = memo(function MessageSender({ socket, curRoom, curUser }) 
   const [message, setMessage] = useState('');
 
   return (
-    <div className='flex flex-row px-4 justify-between gap-x-2 h-fit'>
+    <div className='flex flex-row p-4 justify-between gap-x-2 h-fit'>
       <input
-        className='p-3 w-10/12 rounded-3xl my-4'
+        className='p-3 w-10/12 rounded-3xl'
         id='msg-input'
         value={message}
         placeholder='Message'
         onChange={(e) => setMessage(e.target.value)}
       />
       <button
-        className='p-3 w-2/12 min-w-fit rounded-3xl my-4 submit-btn'
+        className='p-3 w-2/12 min-w-fit rounded-3xl submit-btn'
         onClick={() => {
           if (message !== '' && message.trim().length !== 0) {
             const time = Date.now();
