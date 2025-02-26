@@ -26,13 +26,13 @@ body {
 h3 {
   text-align: start;
   font-size: x-large;
-  font-weight: bold;
+  font-weight: 400;
   text-align: start;
 }
 
 h4 {
   font-size: large;
-  font-weight: 500;
+  font-weight: 300;
 }
 
 p {
