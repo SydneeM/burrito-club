@@ -9,7 +9,7 @@ function History({ restaurants }) {
           <h4>Date</h4>
         </div>
         {restaurants.map((restaurant) => (
-          <div key={`${restaurant.name}-${restaurant.time}`} className='flex flex-col py-2 xl:grid xl:grid-cols-3 text-start ring-1'>
+          <div key={`${restaurant.name}-${restaurant.time}`} className='flex flex-col py-2 xl:grid xl:grid-cols-3 text-start'>
             <div className="flex flex-row gap-x-2 items-baseline">
               <h4 className='xl:hidden'>Place:</h4>
               <span>{restaurant.name}</span>

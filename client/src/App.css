@@ -4,7 +4,7 @@
   text-align: center;
   background-color: rgb(237, 233, 254);
   background-image: radial-gradient(at 19% 34%, rgb(224, 242, 254) 0, transparent 54%), radial-gradient(at 79% 83%, rgb(255, 228, 230) 0, transparent 68%), radial-gradient(at 55% 32%, rgb(243, 232, 255) 0, transparent 67%);
-  color: white;
+  color: #444444;
 }
 
 ::-webkit-scrollbar {
@@ -12,11 +12,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #24263a;
+  background: white;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c7c9e0;
+  background: #f1e9f6;
   border-radius: 0.5rem;
 }
 
@@ -39,17 +39,17 @@ p {
   color: black;
 }
 
-span {
+/* span {
   color: #e3d7e6;
-}
+} */
 
 ul {
   list-style-type: disc;
 }
 
-li {
+/* li {
   color: #e3d7e6;
-}
+} */
 
 li::marker {
   color: #16e02a;
