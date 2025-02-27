@@ -2,7 +2,8 @@
   /* margin: 0;
   padding: 4rem; */
   text-align: center;
-  background-color: #1b1c1c;
+  background-color: rgb(237, 233, 254);
+  background-image: radial-gradient(at 19% 34%, rgb(224, 242, 254) 0, transparent 54%), radial-gradient(at 79% 83%, rgb(255, 228, 230) 0, transparent 68%), radial-gradient(at 55% 32%, rgb(243, 232, 255) 0, transparent 67%);
   color: white;
 }
 
