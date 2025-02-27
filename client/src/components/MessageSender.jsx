@@ -6,8 +6,9 @@ const MessageSender = memo(function MessageSender({ socket, curRoom, curUser }) 
   return (
     <div className='flex flex-row justify-between gap-x-2 h-fit'>
       <input
-        className='p-3 w-10/12 rounded-3xl'
+        className='p-3 w-10/12 rounded-3xl focus:outline-0'
         id='msg-input'
+        autoComplete='off'
         value={message}
         placeholder='Message'
         onChange={(e) => setMessage(e.target.value)}

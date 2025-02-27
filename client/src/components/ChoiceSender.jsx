@@ -7,14 +7,16 @@ const ChoiceSender = memo(function ChoiceSender({ socket, curRoom }) {
   return (
     <div className='flex flex-col gap-y-4 h-full'>
       <input
-        className='p-3 rounded-3xl'
+        className='p-3 rounded-3xl focus:outline-0'
         id='restaurant-input'
+        autoComplete='off'
         placeholder='Restaurant'
         onChange={(e) => setRestaurant(e.target.value)}
       />
       <input
-        className='p-3 rounded-3xl'
+        className='p-3 rounded-3xl focus:outline-0'
         id='buyer-input'
+        autoComplete='off'
         placeholder='Buyer'
         onChange={(e) => setBuyer(e.target.value)}
       />
