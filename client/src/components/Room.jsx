@@ -98,7 +98,7 @@ function Room({ socket }) {
           </div>
         </TabGroup>
       </div>
-      <div className='flex flex-col grow bg-[#faf9f6]/80 rounded-3xl md:my-10 md:mr-10 p-4 md:p-8'>
+      <div className='flex flex-col grow bg-[#faf9f6]/80 rounded-3xl md:my-10 md:mr-10 p-4 md:p-8 overflow-y-auto'>
         <div className='flex flex-col h-full'>
           <Messages messages={roomMessages} curUser={username} />
           <MessageSender socket={socket} curRoom={room} curUser={username} />

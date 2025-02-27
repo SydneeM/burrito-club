@@ -2,7 +2,7 @@ function History({ restaurants }) {
   return (
     <div>
       <h3>Restaurant History</h3>
-      <div className="flex flex-col max-h-80 md:max-h-none overflow-y-auto">
+      <div className="flex flex-col max-h-40 md:max-h-none overflow-y-auto">
         <div className='hidden xl:grid xl:grid-cols-3 text-start'>
           <h4>Place</h4>
           <h4>Buyer</h4>

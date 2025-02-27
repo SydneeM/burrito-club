@@ -5,7 +5,7 @@ const ChoiceSender = memo(function ChoiceSender({ socket, curRoom }) {
   const [buyer, setBuyer] = useState('');
 
   return (
-    <div className='flex flex-col gap-y-4 h-full'>
+    <div className='flex flex-col gap-y-4'>
       <input
         className='p-3 rounded-3xl focus:outline-0'
         id='restaurant-input'
