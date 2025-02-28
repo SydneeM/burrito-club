@@ -1,10 +1,13 @@
+import './loadEnv.js';
 import express from 'express';
 import { createServer } from 'http';
 import cors from 'cors';
 import { Server } from 'socket.io';
+import messages from './routes/messages.js'
 
 const app = express();
 app.use(cors());
+app.use('/messages', messages);
 
 const server = createServer(app);
 let users = [];

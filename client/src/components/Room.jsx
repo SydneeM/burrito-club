@@ -24,6 +24,12 @@ function Room({ socket }) {
   });
 
   useEffect(() => {
+    const getMessages = async () => {
+      let test = await fetch("http://localhost:4000/messages");
+      let test1 = await test.json();
+      console.log('movies:', test1);
+    }
+
     const handleConnect = () => {
       socket.emit('join_room', {
         username: username,
@@ -43,12 +49,13 @@ function Room({ socket }) {
 
     const handleChooseRestaurant = (data) => {
       console.log('Set restaurant');
-      const { name, buyer, time } = data;
+      const { name, buyer } = data;
       setRestaurant(name);
       setBuyer(buyer);
       setRestaurantHistory((restaurants) => [data, ...restaurants]);
     }
 
+    getMessages();
     socket.on('connect', handleConnect);
     socket.on('receive_message', handleReceiveMessage);
     socket.on('room_users', handleRoomUsers);
@@ -60,7 +67,7 @@ function Room({ socket }) {
       socket.off('room_users', handleRoomUsers);
       socket.off('restaurant_info', handleChooseRestaurant);
     };
-  }, [socket]);
+  }, [socket, room, username]);
 
   return (
     <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-screen'>
