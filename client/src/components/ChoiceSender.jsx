@@ -5,11 +5,12 @@ const ChoiceSender = memo(function ChoiceSender({ socket, curRoom }) {
   const [buyer, setBuyer] = useState('');
 
   return (
-    <div className='flex flex-col gap-y-4'>
+    <div className='flex flex-col gap-y-4 mt-2'>
       <input
         className='p-3 rounded-3xl focus:outline-0'
         id='restaurant-input'
         autoComplete='off'
+        value={restaurant}
         placeholder='Restaurant'
         onChange={(e) => setRestaurant(e.target.value)}
       />
@@ -17,6 +18,7 @@ const ChoiceSender = memo(function ChoiceSender({ socket, curRoom }) {
         className='p-3 rounded-3xl focus:outline-0'
         id='buyer-input'
         autoComplete='off'
+        value={buyer}
         placeholder='Buyer'
         onChange={(e) => setBuyer(e.target.value)}
       />
@@ -28,6 +30,8 @@ const ChoiceSender = memo(function ChoiceSender({ socket, curRoom }) {
             const time = Date.now();
             const state = { buyer, restaurant, room: curRoom, time, };
             socket.emit('choose_restaurant', state);
+            setRestaurant('');
+            setBuyer('');
           }
         }}>
         Let&apos;s Eat
