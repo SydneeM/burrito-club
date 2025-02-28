@@ -71,18 +71,18 @@ function Room({ socket }) {
               </Tab>
             </TabList>
             <div className='flex flex-col md:w-[30vw] md:my-10 gap-y-4 md:gap-y-10 w-full'>
-              <TabPanels className='p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl md:grow md:overflow-y-auto'>
+              <TabPanels className='p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl md:grow md:overflow-y-auto md:max-h-3/5'>
                 <TabPanel>
                   <Choice restaurant={restaurant} buyer={buyer} />
                 </TabPanel>
-                <TabPanel>
+                <TabPanel className='h-full'>
                   <History restaurants={restaurantHistory} />
                 </TabPanel>
                 <TabPanel>
                   <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
                 </TabPanel>
               </TabPanels>
-              <div className='p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl md:grow'>
+              <div className='p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl md:grow max-h-40 md:max-h-none overflow-y-auto'>
                 <h3>Restaurant Selection</h3>
                 <ChoiceSender socket={socket} curRoom={room} />
               </div>

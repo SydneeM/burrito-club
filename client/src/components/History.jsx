@@ -1,8 +1,8 @@
 function History({ restaurants }) {
   return (
-    <div>
+    <div className='flex flex-col h-full'>
       <h3>Restaurant History</h3>
-      <div className="flex flex-col max-h-40 md:max-h-none overflow-y-auto">
+      <div className='max-h-20 md:max-h-none grow overflow-y-auto'>
         <div className='hidden xl:grid xl:grid-cols-3 text-start'>
           <h4>Place</h4>
           <h4>Buyer</h4>
