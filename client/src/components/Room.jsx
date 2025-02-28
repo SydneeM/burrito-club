@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import Users from './Users';
 import Choice from './Choice';
 import ChoiceSender from './ChoiceSender';
@@ -15,11 +14,23 @@ function Room({ socket }) {
   const [restaurant, setRestaurant] = useState('');
   const [restaurantHistory, setRestaurantHistory] = useState([]);
   const [buyer, setBuyer] = useState('');
-
-  const { state } = useLocation();
-  const { username, room } = state;
+  const [username, setUsername] = useState(() => {
+    const storedUserame = sessionStorage.getItem('username');
+    return storedUserame ? storedUserame : '';
+  });
+  const [room, setRoom] = useState(() => {
+    const storedRoom = sessionStorage.getItem('room');
+    return storedRoom ? storedRoom : '';
+  });
 
   useEffect(() => {
+    const handleConnect = () => {
+      socket.emit('join_room', {
+        username: username,
+        room: room,
+      });
+    }
+
     const handleReceiveMessage = (data) => {
       console.log('Received message');
       setRoomMessages((messages) => [...messages, data]);
@@ -38,11 +49,13 @@ function Room({ socket }) {
       setRestaurantHistory((restaurants) => [data, ...restaurants]);
     }
 
+    socket.on('connect', handleConnect);
     socket.on('receive_message', handleReceiveMessage);
     socket.on('room_users', handleRoomUsers);
     socket.on('restaurant_info', handleChooseRestaurant);
 
     return () => {
+      socket.off('connect', handleConnect);
       socket.off('receive_message', handleReceiveMessage);
       socket.off('room_users', handleRoomUsers);
       socket.off('restaurant_info', handleChooseRestaurant);

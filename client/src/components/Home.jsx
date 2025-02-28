@@ -35,9 +35,13 @@ function Home({ socket }) {
           className='ring-1'
           onClick={() => {
             if (username !== '' && username.trim().length !== 0 && room.name !== '') {
-              const state = { username, room: room.name };
-              socket.emit('join_room', state);
-              navigate('/room', { replace: true, state });
+              sessionStorage.setItem('username', username);
+              sessionStorage.setItem('room', room.name);
+              socket.emit('join_room', {
+                username,
+                room: room.name,
+              });
+              navigate('/room', { replace: true });
             }
           }}>
           Enter
