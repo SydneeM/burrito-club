@@ -32,26 +32,20 @@ function Room({ socket }) {
 
     const handleChooseRestaurant = (data) => {
       console.log('Set restaurant');
-      const { name, buyer } = data;
+      const { name, buyer, time } = data;
       setRestaurant(name);
       setBuyer(buyer);
-    }
-
-    const handleRestaurantHistory = (data) => {
-      console.log('Updated restaurant history');
-      setRestaurantHistory(data);
+      setRestaurantHistory((restaurants) => [data, ...restaurants]);
     }
 
     socket.on('receive_message', handleReceiveMessage);
     socket.on('room_users', handleRoomUsers);
     socket.on('restaurant_info', handleChooseRestaurant);
-    socket.on('restaurant_history', handleRestaurantHistory);
 
     return () => {
       socket.off('receive_message', handleReceiveMessage);
       socket.off('room_users', handleRoomUsers);
       socket.off('restaurant_info', handleChooseRestaurant);
-      socket.off('restaurant_history', handleRestaurantHistory);
     };
   }, [socket]);
 
@@ -60,8 +54,6 @@ function Room({ socket }) {
       <div className='flex flex-col'>
         <TabGroup className='h-full'>
           <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-full'>
-            {/* <h1 className='text-start text-5xl md:hidden'>{`${room} Club`}</h1>
-            <h3 className='md:hidden'>{`Hello ${username}`}</h3> */}
             <TabList className='flex flex-row md:flex-col gap-x-4 md:gap-y-4 p-4 md:px-10 bg-[#faf9f6]'>
               <h1 className='hidden md:block text-start text-5xl text-nowrap'>{`${room} Club`}</h1>
               <h3 className='hidden md:block text-nowrap'>{`Hello ${username}`}</h3>

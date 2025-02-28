@@ -8,7 +8,6 @@ app.use(cors());
 
 const server = http.createServer(app);
 let users = [];
-let history = [];
 
 const io = new Server(server, {
   cors: {
@@ -71,18 +70,8 @@ io.on('connection', (socket) => {
     io.to(room).emit('restaurant_info', {
       buyer,
       name: restaurant,
-    });
-
-    const curRestaurant = {
-      buyer,
-      name: restaurant,
-      room,
       time,
-    }
-
-    history.push(curRestaurant);
-    const historyInCurRoom = history.filter((restaurant) => restaurant.room === room).sort((a, b) => b.time - a.time);
-    io.to(room).emit('restaurant_history', historyInCurRoom);
+    });
   });
 });
 
