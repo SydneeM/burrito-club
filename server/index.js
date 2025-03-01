@@ -1,6 +1,7 @@
 import './loadEnv.js';
 import express from 'express';
-import { createServer } from 'http';
+import https from 'https';
+import fs from 'fs';
 import cors from 'cors';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
@@ -13,12 +14,17 @@ app.use(cors());
 const uri = process.env.ATLAS_URI || '';
 mongoose.connect(uri);
 
-const server = createServer(app);
+const options = {
+  key: fs.readFileSync('localhost.key'),
+  cert: fs.readFileSync('localhost.crt'),
+};
+
+const server = https.createServer(options);
 let users = [];
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: 'https://localhost:5173',
     methods: ['GET', 'POST'],
   },
 });

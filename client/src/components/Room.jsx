@@ -26,6 +26,24 @@ function Room({ socket }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if(!("Notification" in window)) {
+      alert("This browser does not support system notifications!")
+    } 
+    else if(Notification.permission === "granted") {
+      new Notification("New message from Burrito Club", {
+        body: "Notification"
+      })
+    }
+    else if(Notification.permission !== "denied") {
+       Notification.requestPermission((permission)=> {
+          if (permission === "granted") {
+            new Notification("New message from Burrito Club", {
+              body: "Notification"
+            })
+          }
+       })
+    }
+
     const handleConnect = () => {
       console.log('Joined room');
       socket.emit('join_room', {
