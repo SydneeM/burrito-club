@@ -24,17 +24,17 @@ function Room({ socket }) {
   });
 
   useEffect(() => {
-    const getMessages = async () => {
-      let test = await fetch("http://localhost:4000/messages");
-      let test1 = await test.json();
-      console.log('movies:', test1);
-    }
-
     const handleConnect = () => {
+      console.log('Joined room');
       socket.emit('join_room', {
         username: username,
         room: room,
       });
+    }
+
+    const handleLoadMessages = (data) => {
+      console.log('Loaded messsages');
+      setRoomMessages(data);
     }
 
     const handleReceiveMessage = (data) => {
@@ -55,14 +55,15 @@ function Room({ socket }) {
       setRestaurantHistory((restaurants) => [data, ...restaurants]);
     }
 
-    getMessages();
     socket.on('connect', handleConnect);
+    socket.on('load_messages', handleLoadMessages);
     socket.on('receive_message', handleReceiveMessage);
     socket.on('room_users', handleRoomUsers);
     socket.on('restaurant_info', handleChooseRestaurant);
 
     return () => {
       socket.off('connect', handleConnect);
+      socket.off('load_messages', handleLoadMessages);
       socket.off('receive_message', handleReceiveMessage);
       socket.off('room_users', handleRoomUsers);
       socket.off('restaurant_info', handleChooseRestaurant);

@@ -3,11 +3,14 @@ import express from 'express';
 import { createServer } from 'http';
 import cors from 'cors';
 import { Server } from 'socket.io';
-import messages from './routes/messages.js'
+import mongoose from 'mongoose';
+import Message from './models/message.js';
 
 const app = express();
 app.use(cors());
-app.use('/messages', messages);
+
+const uri = process.env.ATLAS_URI || '';
+mongoose.connect(uri);
 
 const server = createServer(app);
 let users = [];
@@ -22,7 +25,7 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log(`User connected to socket ${socket.id}`);
 
-  socket.on('join_room', (data) => {
+  socket.on('join_room', async (data) => {
     const { username, room } = data;
     socket.join(room);
 
@@ -35,6 +38,9 @@ io.on('connection', (socket) => {
     users.push(curUser);
     const usersInCurRoom = users.filter((user) => user.room === room).map((filteredUser) => filteredUser.username);
     io.to(room).emit('room_users', usersInCurRoom);
+
+    const dbMessages = await Message.find({ room }).limit(50);
+    io.to(room).emit('load_messages', dbMessages);
   });
 
   socket.on('disconnect', () => {
@@ -59,13 +65,21 @@ io.on('connection', (socket) => {
     io.to(room).emit('room_users', updatedUsersInCurRoom);
   });
 
-  socket.on('send_message', data => {
+  socket.on('send_message', async (data) => {
     const { message, username, room, time } = data;
     io.to(room).emit('receive_message', {
       message,
       username,
       time,
     });
+
+    const newMessage = new Message({
+      message,
+      username,
+      room,
+      time,
+    });
+    await newMessage.save();
   });
 
   socket.on('choose_restaurant', data => {
