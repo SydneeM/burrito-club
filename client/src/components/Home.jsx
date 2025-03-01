@@ -10,7 +10,7 @@ const rooms = [
 function Home({ socket }) {
   const [username, setUsername] = useState('');
   const [room, setRoom] = useState(rooms[0]);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className='flex h-screen ring-1'>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Users from './Users';
 import Choice from './Choice';
 import ChoiceSender from './ChoiceSender';
@@ -6,7 +7,7 @@ import History from './History';
 import Messages from './Messages';
 import MessageSender from './MessageSender';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
-import { StarIcon, ClockIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { StarIcon, ClockIcon, UsersIcon, ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline';
 
 function Room({ socket }) {
   const [roomMessages, setRoomMessages] = useState([]);
@@ -22,6 +23,7 @@ function Room({ socket }) {
     const storedRoom = sessionStorage.getItem('room');
     return storedRoom ? storedRoom : '';
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleConnect = () => {
@@ -88,16 +90,26 @@ function Room({ socket }) {
           <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-full'>
             <TabList className='flex flex-row md:flex-col gap-x-4 md:gap-y-4 p-4 md:px-10 bg-[#faf9f6]'>
               <h1 className='hidden md:block text-start text-5xl text-nowrap'>{`${room} Club`}</h1>
-              <h3 className='hidden md:block text-nowrap'>{`Hello ${username}`}</h3>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2 bg-[#9bc4e0] rounded-md'>
+              <div className='flex flex-row justify-between'>
+                <h3 className='hidden md:block text-nowrap'>{`Hello ${username}`}</h3>
+                <button
+                  className='hover:cursor-pointer'
+                  onClick={() => {
+                    socket.emit('leave_room', { room });
+                    navigate('/', { replace: true });
+                  }}>
+                  <ArrowLeftStartOnRectangleIcon className='size-6' />
+                </button>
+              </div>
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2 bg-[#9bc4e0] rounded-md hover:cursor-pointer'>
                 <StarIcon className='size-8' />
                 <div className='hidden sm:block text-nowrap menu-text'>Choice</div>
               </Tab>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-md'>
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-md hover:cursor-pointer'>
                 <ClockIcon className='size-8' />
                 <div className='hidden sm:block text-nowrap menu-text'>History</div>
               </Tab>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-md'>
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-md hover:cursor-pointer'>
                 <UsersIcon className='size-8' />
                 <div className='hidden sm:block text-nowrap menu-text'>Members</div>
               </Tab>

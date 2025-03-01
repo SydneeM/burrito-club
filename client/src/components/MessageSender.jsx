@@ -18,8 +18,8 @@ const MessageSender = memo(function MessageSender({ socket, curRoom, curUser }) 
         onClick={() => {
           if (message !== '' && message.trim().length !== 0) {
             const time = Date.now();
-            const state = { message, username: curUser, room: curRoom, time, };
-            socket.emit('send_message', state);
+            const newMessage = { message, username: curUser, room: curRoom, time, };
+            socket.emit('send_message', newMessage);
             setMessage('');
           }
         }}>

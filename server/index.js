@@ -61,7 +61,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('leave_room', (data) => {
-    const { username, room } = data;
+    const { room } = data;
     socket.leave(room);
     const updatedUsers = users.filter((user) => user.id !== socket.id);
     users = updatedUsers;

@@ -28,8 +28,8 @@ const ChoiceSender = memo(function ChoiceSender({ socket, curRoom }) {
           if (restaurant !== '' && restaurant.trim().length !== 0 &&
             buyer !== '' && buyer.trim().length !== 0) {
             const time = Date.now();
-            const state = { buyer, restaurant, room: curRoom, time, };
-            socket.emit('choose_restaurant', state);
+            const newChoice = { buyer, restaurant, room: curRoom, time, };
+            socket.emit('choose_restaurant', newChoice);
             setRestaurant('');
             setBuyer('');
           }
