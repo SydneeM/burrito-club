@@ -84,10 +84,8 @@ function Room({ socket }) {
   }, [socket, room, username]);
 
   return (
-    <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-screen'>
-      <div className='flex flex-col'>
-        <TabGroup className='h-full'>
-          <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-full'>
+        <TabGroup className='flex flex-col md:flex-row h-screen w-screen'>
+          <div className='flex flex-col md:flex-row md:gap-x-10 gap-y-4 h-full w-full'>
             <TabList className='flex flex-row md:flex-col gap-x-4 md:gap-y-4 p-4 md:px-10 bg-[#faf9f6]'>
               <h1 className='hidden md:block text-start text-5xl text-nowrap'>{`${room} Club`}</h1>
               <div className='flex flex-row justify-between'>
@@ -114,8 +112,12 @@ function Room({ socket }) {
                 <div className='hidden sm:block text-nowrap menu-text'>Members</div>
               </Tab>
             </TabList>
-            <div className='flex flex-col md:w-[30vw] md:my-10 gap-y-4 md:gap-y-10 w-full'>
-              <TabPanels className='p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl md:grow md:overflow-y-auto md:max-h-3/5'>
+            <div className='flex flex-col md:my-10 p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl md:overflow-y-auto md:w-[50vw] grow md:grow-0'>
+              <Messages messages={roomMessages} curUser={username} />
+              <MessageSender socket={socket} curRoom={room} curUser={username} />
+            </div>
+            <div className='flex flex-col md:my-10 gap-y-4 md:gap-y-10 md:mr-10 overflow-x-auto grow'>
+              <TabPanels className='p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl md:overflow-y-auto md:max-h-3/5'>
                 <TabPanel>
                   <Choice restaurant={restaurant} buyer={buyer} />
                 </TabPanel>
@@ -126,22 +128,13 @@ function Room({ socket }) {
                   <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
                 </TabPanel>
               </TabPanels>
-              <div className='p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl md:grow max-h-40 md:max-h-none overflow-y-auto'>
+              <div className='p-4 md:p-8 bg-[#faf9f6]/80 rounded-3xl overflow-y-auto grow md:grow-0'>
                 <h3>Restaurant Selection</h3>
                 <ChoiceSender socket={socket} curRoom={room} />
               </div>
             </div>
           </div>
         </TabGroup>
-      </div>
-      <div className='flex flex-col grow bg-[#faf9f6]/80 rounded-3xl md:my-10 md:mr-10 p-4 md:p-8 overflow-y-auto'>
-        <div className='flex flex-col h-full'>
-          <Messages messages={roomMessages} curUser={username} />
-          <MessageSender socket={socket} curRoom={room} curUser={username} />
-        </div>
-      </div>
-
-    </div>
   );
 }
 
