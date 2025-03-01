@@ -5,6 +5,7 @@ import cors from 'cors';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import Message from './models/message.js';
+import Restaurant from './models/restaurant.js';
 
 const app = express();
 app.use(cors());
@@ -41,6 +42,9 @@ io.on('connection', (socket) => {
 
     const dbMessages = await Message.find({ room }).limit(50);
     io.to(room).emit('load_messages', dbMessages);
+
+    const dbRestaurants = await Restaurant.find({ room }).limit(25).sort({ time: 'desc' });
+    io.to(room).emit('load_restaurants', dbRestaurants);
   });
 
   socket.on('disconnect', () => {
@@ -82,13 +86,21 @@ io.on('connection', (socket) => {
     await newMessage.save();
   });
 
-  socket.on('choose_restaurant', data => {
+  socket.on('choose_restaurant', async (data) => {
     const { buyer, restaurant, room, time } = data;
     io.to(room).emit('restaurant_info', {
       buyer,
       name: restaurant,
       time,
     });
+
+    const newRestaurant = new Restaurant({
+      buyer,
+      name: restaurant,
+      room,
+      time,
+    });
+    await newRestaurant.save();
   });
 });
 

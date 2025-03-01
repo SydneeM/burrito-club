@@ -14,11 +14,11 @@ function Room({ socket }) {
   const [restaurant, setRestaurant] = useState('');
   const [restaurantHistory, setRestaurantHistory] = useState([]);
   const [buyer, setBuyer] = useState('');
-  const [username, setUsername] = useState(() => {
+  const [username] = useState(() => {
     const storedUserame = sessionStorage.getItem('username');
     return storedUserame ? storedUserame : '';
   });
-  const [room, setRoom] = useState(() => {
+  const [room] = useState(() => {
     const storedRoom = sessionStorage.getItem('room');
     return storedRoom ? storedRoom : '';
   });
@@ -47,6 +47,15 @@ function Room({ socket }) {
       setRoomUsers(data);
     }
 
+    const handleLoadRestaurants = (data) => {
+      console.log('Loaded restaurants');
+      setRestaurantHistory(data);
+      if (data.length > 0) {
+        setRestaurant(data[0].name);
+        setBuyer(data[0].buyer);
+      }
+    }
+
     const handleChooseRestaurant = (data) => {
       console.log('Set restaurant');
       const { name, buyer } = data;
@@ -59,6 +68,7 @@ function Room({ socket }) {
     socket.on('load_messages', handleLoadMessages);
     socket.on('receive_message', handleReceiveMessage);
     socket.on('room_users', handleRoomUsers);
+    socket.on('load_restaurants', handleLoadRestaurants);
     socket.on('restaurant_info', handleChooseRestaurant);
 
     return () => {
@@ -66,6 +76,7 @@ function Room({ socket }) {
       socket.off('load_messages', handleLoadMessages);
       socket.off('receive_message', handleReceiveMessage);
       socket.off('room_users', handleRoomUsers);
+      socket.off('load_restaurants', handleLoadRestaurants);
       socket.off('restaurant_info', handleChooseRestaurant);
     };
   }, [socket, room, username]);
