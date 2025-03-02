@@ -26,24 +26,6 @@ function Room({ socket }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!("Notification" in window)) {
-      alert("This browser does not support system notifications!")
-    } 
-    else if(Notification.permission === "granted") {
-      new Notification("New message from Burrito Club", {
-        body: "Notification"
-      })
-    }
-    else if(Notification.permission !== "denied") {
-       Notification.requestPermission((permission)=> {
-          if (permission === "granted") {
-            new Notification("New message from Burrito Club", {
-              body: "Notification"
-            })
-          }
-       })
-    }
-
     const handleConnect = () => {
       console.log('Joined room');
       socket.emit('join_room', {
@@ -102,57 +84,57 @@ function Room({ socket }) {
   }, [socket, room, username]);
 
   return (
-        <TabGroup className='flex flex-col lg:flex-row h-screen w-screen'>
-          <div className='flex flex-col lg:flex-row lg:gap-x-10 gap-y-4 h-full w-full'>
-            <TabList className='flex flex-row lg:flex-col gap-x-4 lg:gap-y-4 p-4 lg:px-10 bg-[#faf9f6]'>
-              <h1 className='hidden lg:block text-start text-5xl text-nowrap'>{`${room} Club`}</h1>
-              <div className='flex flex-row justify-between'>
-                <h3 className='hidden lg:block text-nowrap'>{`Hello ${username}`}</h3>
-                <button
-                  className='hover:cursor-pointer'
-                  onClick={() => {
-                    socket.emit('leave_room', { room });
-                    navigate('/', { replace: true });
-                  }}>
-                  <ArrowLeftStartOnRectangleIcon className='size-6' />
-                </button>
-              </div>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2 bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
-                <StarIcon className='size-8' />
-                <div className='hidden sm:block text-nowrap menu-text'>Choice</div>
-              </Tab>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
-                <ClockIcon className='size-8' />
-                <div className='hidden sm:block text-nowrap menu-text'>History</div>
-              </Tab>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
-                <UsersIcon className='size-8' />
-                <div className='hidden sm:block text-nowrap menu-text'>Members</div>
-              </Tab>
-            </TabList>
-            <div className='flex flex-col lg:my-10 p-4 lg:p-8 bg-[#faf9f6]/80 rounded-3xl lg:overflow-y-auto lg:w-[50vw] grow lg:grow-0'>
-              <Messages messages={roomMessages} curUser={username} />
-              <MessageSender socket={socket} curRoom={room} curUser={username} />
-            </div>
-            <div className='flex flex-col lg:my-10 gap-y-4 lg:gap-y-10 lg:mr-10 overflow-x-auto grow'>
-              <TabPanels className='p-4 lg:p-8 bg-[#faf9f6]/80 rounded-3xl lg:overflow-y-auto lg:max-h-3/5'>
-                <TabPanel>
-                  <Choice restaurant={restaurant} buyer={buyer} />
-                </TabPanel>
-                <TabPanel className='h-full'>
-                  <History restaurants={restaurantHistory} />
-                </TabPanel>
-                <TabPanel>
-                  <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
-                </TabPanel>
-              </TabPanels>
-              <div className='p-4 lg:p-8 bg-[#faf9f6]/80 rounded-3xl overflow-y-auto grow lg:grow-0'>
-                <h3>Restaurant Selection</h3>
-                <ChoiceSender socket={socket} curRoom={room} />
-              </div>
-            </div>
+    <TabGroup className='flex flex-col lg:flex-row h-screen w-screen'>
+      <div className='flex flex-col lg:flex-row lg:gap-x-10 gap-y-4 h-full w-full'>
+        <TabList className='flex flex-row lg:flex-col gap-x-4 lg:gap-y-4 p-4 lg:px-10 bg-[#faf9f6]'>
+          <h1 className='hidden lg:block text-start text-5xl text-nowrap'>{`${room} Club`}</h1>
+          <div className='flex flex-row justify-between'>
+            <h3 className='hidden lg:block text-nowrap'>{`Hello ${username}`}</h3>
+            <button
+              className='hover:cursor-pointer'
+              onClick={() => {
+                socket.emit('leave_room', { room });
+                navigate('/', { replace: true });
+              }}>
+              <ArrowLeftStartOnRectangleIcon className='size-6' />
+            </button>
           </div>
-        </TabGroup>
+          <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2 bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
+            <StarIcon className='size-8' />
+            <div className='hidden sm:block text-nowrap menu-text'>Choice</div>
+          </Tab>
+          <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
+            <ClockIcon className='size-8' />
+            <div className='hidden sm:block text-nowrap menu-text'>History</div>
+          </Tab>
+          <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
+            <UsersIcon className='size-8' />
+            <div className='hidden sm:block text-nowrap menu-text'>Members</div>
+          </Tab>
+        </TabList>
+        <div className='flex flex-col lg:my-10 p-4 lg:p-8 bg-[#faf9f6]/80 rounded-3xl lg:overflow-y-auto lg:w-[50vw] grow lg:grow-0'>
+          <Messages messages={roomMessages} curUser={username} />
+          <MessageSender socket={socket} curRoom={room} curUser={username} />
+        </div>
+        <div className='flex flex-col lg:my-10 gap-y-4 lg:gap-y-10 lg:mr-10 overflow-x-auto grow'>
+          <TabPanels className='p-4 lg:p-8 bg-[#faf9f6]/80 rounded-3xl lg:overflow-y-auto lg:max-h-3/5'>
+            <TabPanel>
+              <Choice restaurant={restaurant} buyer={buyer} />
+            </TabPanel>
+            <TabPanel className='h-full'>
+              <History restaurants={restaurantHistory} />
+            </TabPanel>
+            <TabPanel>
+              <Users socket={socket} curRoom={room} curUser={username} users={roomUsers} />
+            </TabPanel>
+          </TabPanels>
+          <div className='p-4 lg:p-8 bg-[#faf9f6]/80 rounded-3xl overflow-y-auto grow lg:grow-0'>
+            <h3>Restaurant Selection</h3>
+            <ChoiceSender socket={socket} curRoom={room} />
+          </div>
+        </div>
+      </div>
+    </TabGroup>
   );
 }
 

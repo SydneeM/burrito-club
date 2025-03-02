@@ -7,6 +7,7 @@ import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import Message from './models/message.js';
 import Restaurant from './models/restaurant.js';
+import cron from 'node-cron';
 
 const app = express();
 app.use(cors());
@@ -24,9 +25,14 @@ let users = [];
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://localhost:5173',
+    origin: 'https://10.0.0.61:5173',
     methods: ['GET', 'POST'],
   },
+});
+
+cron.schedule('* * * * *', () => {
+  console.log('cron ran');
+  io.sockets.emit('notify');
 });
 
 io.on('connection', (socket) => {
