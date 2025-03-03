@@ -15,13 +15,18 @@ function Messages({ messages, curUser }) {
     <div className='flex flex-col gap-y-4 h-[30vh] grow overflow-y-auto'>
       {messages.map((messageInfo) => (
         <div
-          className='flex flex-col p-2 rounded-2xl w-fit max-w-3/4 break-words text-black'
-          id={curUser === messageInfo.username ? 'cur-user-msg' : 'other-user-msg'}
+          className={curUser === messageInfo.username ? 'flex flex-col w-fit max-w-3/4 self-end' : 'flex flex-col w-fit max-w-3/4 self-start'}
           key={`${messageInfo.username}-${messageInfo.time}`}
         >
-          <p>{messageInfo.username}</p>
-          <p>{messageInfo.time}</p>
-          <p className='text-left'>{messageInfo.message}</p>
+          {curUser !== messageInfo.username &&
+            <span className='text-sm text-start ml-2'>{messageInfo.username}</span>
+          }
+          <span
+            id={curUser === messageInfo.username ? 'cur-user-msg' : 'other-user-msg'}
+            className='px-4 py-2 rounded-2xl break-words text-black text-left'
+          >
+            {messageInfo.message}
+          </span>
         </div>
       ))}
       <div ref={messagesEndRef} />
