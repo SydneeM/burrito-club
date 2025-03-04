@@ -23,7 +23,7 @@ function Messages({ messages, curUser }) {
           }
           <span
             id={curUser === messageInfo.username ? 'cur-user-msg' : 'other-user-msg'}
-            className='px-4 py-2 rounded-2xl break-words text-black text-left'
+            className='px-4 py-2 rounded-2xl break-words text-left'
           >
             {messageInfo.message}
           </span>

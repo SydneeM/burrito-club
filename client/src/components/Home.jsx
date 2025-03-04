@@ -15,24 +15,28 @@ function Home({ socket }) {
   return (
     <div className='flex h-screen ring-1'>
       <div className='flex flex-col gap-y-4 m-auto'>
-        <h1 className=''>Join the Club</h1>
+        <h1 className='text-5xl text-nowrap'>Join the Club</h1>
         <input
-          className='ring-1'
+          className='w-80 p-3 rounded-xl focus:outline-0'
           placeholder='Username'
           onChange={(e) => setUsername(e.target.value)}
         />
         <Listbox value={room} onChange={setRoom}>
-          <ListboxButton className='ring-1'>{room.name}</ListboxButton>
-          <ListboxOptions anchor="bottom">
+          <ListboxButton className='w-80 text-start p-3 rounded-xl bg-white hover:cursor-pointer'>{room.name}</ListboxButton>
+          <ListboxOptions className='w-80 rounded-xl bg-[#cbe0f4]' anchor='bottom'>
             {rooms.map((room) => (
-              <ListboxOption key={room.id} value={room}>
+              <ListboxOption
+                className='hover:bg-white/50 hover:cursor-pointer p-3 rounded-xl m-2'
+                key={room.id}
+                value={room}
+              >
                 {room.name}
               </ListboxOption>
             ))}
           </ListboxOptions>
         </Listbox>
         <button
-          className='ring-1'
+          className='p-3 w-80 rounded-xl submit-btn'
           onClick={() => {
             if (username !== '' && username.trim().length !== 0 && room.name !== '') {
               sessionStorage.setItem('username', username);

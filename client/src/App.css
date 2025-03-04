@@ -41,6 +41,10 @@ ul {
   list-style-type: disc;
 }
 
+input {
+  background-color: white;
+}
+
 li::marker {
   color: #16e02a;
 }
@@ -69,25 +73,10 @@ li::marker {
   font-size: large;
 }
 
-#restaurant-input {
-  background-color: white;
-  color: black;
-}
-
-#buyer-input {
-  background-color: white;
-  color: black;
-}
-
 #cur-user-msg {
   background-color: #9bc4e0;
 }
 
 #other-user-msg {
   background-color: #e5e1eb;
-}
-
-#msg-input {
-  background-color: #fcfcfc;
-  color: black;
 }
