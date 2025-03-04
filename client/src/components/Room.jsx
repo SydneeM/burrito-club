@@ -86,7 +86,7 @@ function Room({ socket }) {
   return (
         <TabGroup className='flex flex-col lg:flex-row h-screen w-screen'>
           <div className='flex flex-col lg:flex-row lg:gap-x-10 gap-y-4 h-full w-full'>
-            <TabList className='flex flex-row lg:flex-col gap-x-4 lg:gap-y-4 p-4 lg:px-10 bg-[#faf9f6]'>
+            <TabList className='flex flex-row lg:flex-col gap-x-2 lg:gap-y-4 p-4 lg:px-10 bg-[#faf9f6]'>
               <h1 className='hidden lg:block text-start text-5xl text-nowrap'>{`${room} Club`}</h1>
               <div className='flex flex-row justify-between'>
                 <h3 className='hidden lg:block text-nowrap'>{`Hello ${username}`}</h3>
@@ -99,18 +99,18 @@ function Room({ socket }) {
                   <ArrowLeftStartOnRectangleIcon className='size-6' />
                 </button>
               </div>
-              <div className='flex flex-col'>
+              <div className='flex flex-row lg:flex-col'>
               <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#cbe0f4]/50 p-2 rounded-lg hover:cursor-pointer'>
                 <StarIcon className='size-6' />
-                <div className='hidden sm:block text-nowrap menu-text'>Choice</div>
+                <span className='hidden sm:block text-nowrap menu-text'>Choice</span>
               </Tab>
               <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#cbe0f4]/50 p-2 rounded-lg hover:cursor-pointer'>
                 <ClockIcon className='size-6' />
-                <div className='hidden sm:block text-nowrap menu-text'>History</div>
+                <span className='hidden sm:block text-nowrap menu-text'>History</span>
               </Tab>
               <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#cbe0f4]/50 p-2 rounded-lg hover:cursor-pointer'>
                 <UsersIcon className='size-6' />
-                <div className='hidden sm:block text-nowrap menu-text'>Members</div>
+                <span className='hidden sm:block text-nowrap menu-text'>Members</span>
               </Tab>
               </div>
             </TabList>
