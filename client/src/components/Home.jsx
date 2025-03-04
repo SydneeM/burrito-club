@@ -4,7 +4,7 @@ import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headless
 
 const rooms = [
   { id: 1, name: 'Burrito' },
-  { id: 2, name: 'Other' }
+  // { id: 2, name: 'Other' }
 ]
 
 function Home({ socket }) {
