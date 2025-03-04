@@ -26,30 +26,20 @@ body {
 
 h3 {
   font-size: x-large;
-  font-weight: 400;
   text-align: start;
 }
 
 h4 {
   font-size: large;
-  font-weight: 300;
 }
 
 p {
   color: black;
 }
 
-/* span {
-  color: #e3d7e6;
-} */
-
 ul {
   list-style-type: disc;
 }
-
-/* li {
-  color: #e3d7e6;
-} */
 
 li::marker {
   color: #16e02a;
@@ -75,13 +65,8 @@ li::marker {
   background-color: #24263a;
 }
 
-.menu-btn:hover {
-  color: #cbe0f4;
-}
-
 .menu-text {
   font-size: large;
-  font-weight: 400;
 }
 
 #restaurant-input {
@@ -106,5 +91,3 @@ li::marker {
   background-color: #fcfcfc;
   color: black;
 }
-
-/* #cbe0f4,#9bc4e0,#e5e1eb,#e3d7e6,#c7c9e0 */

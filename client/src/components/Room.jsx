@@ -99,18 +99,20 @@ function Room({ socket }) {
                   <ArrowLeftStartOnRectangleIcon className='size-6' />
                 </button>
               </div>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2 bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
-                <StarIcon className='size-8' />
+              <div className='flex flex-col'>
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#cbe0f4]/50 p-2 rounded-lg hover:cursor-pointer'>
+                <StarIcon className='size-6' />
                 <div className='hidden sm:block text-nowrap menu-text'>Choice</div>
               </Tab>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
-                <ClockIcon className='size-8' />
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#cbe0f4]/50 p-2 rounded-lg hover:cursor-pointer'>
+                <ClockIcon className='size-6' />
                 <div className='hidden sm:block text-nowrap menu-text'>History</div>
               </Tab>
-              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#c7c9e0] p-2  bg-[#9bc4e0] rounded-lg hover:cursor-pointer'>
-                <UsersIcon className='size-8' />
+              <Tab className='flex flex-row gap-x-2 items-center menu-btn data-[selected]:bg-[#cbe0f4]/50 p-2 rounded-lg hover:cursor-pointer'>
+                <UsersIcon className='size-6' />
                 <div className='hidden sm:block text-nowrap menu-text'>Members</div>
               </Tab>
+              </div>
             </TabList>
             <div className='flex flex-col lg:my-10 p-4 lg:p-8 bg-[#faf9f6]/80 rounded-3xl lg:overflow-y-auto lg:w-[50vw] grow lg:grow-0'>
               <Messages messages={roomMessages} curUser={username} />
