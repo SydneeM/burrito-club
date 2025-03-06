@@ -4,11 +4,23 @@ import { createServer } from 'http';
 import cors from 'cors';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
+import cron from 'node-cron';
+import nodemailer from 'nodemailer';
 import Message from './models/message.js';
 import Restaurant from './models/restaurant.js';
 
 const app = express();
 app.use(cors());
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.GMAIL_NAME,
+    pass: process.env.GMAIL_PASSWORD,
+  },
+});
 
 const uri = process.env.ATLAS_URI || '';
 mongoose.connect(uri);
@@ -21,6 +33,17 @@ const io = new Server(server, {
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST'],
   },
+});
+
+cron.schedule('0 3 * * 3', () => {
+  console.log('Cron ran');
+  transporter.sendMail({
+    from: `Burrito Club<${process.env.GMAIL_NAME}>`,
+    to: process.env.EMAIL_LIST,
+    subject: "Tomorrow is Burrito Day",
+    text: "This is a reminder that the Burrito Club will meet tomorrow.",
+    html: "<p>This is a reminder that the Burrito Club will meet tomorrow.</p>",
+  });
 });
 
 io.on('connection', (socket) => {
