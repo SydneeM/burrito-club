@@ -4,7 +4,7 @@
 burrito-club is a real-time chat application built with the socket.io library. Users can connect to a room to chat and plan their lunch outings. A weekly restaurant can be set, visited restaurants are saved, and weekly email reminders to pick a spot are sent out.
 
 ## Environment Variables
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following environment variables to your server/.env file
 
 `ATLAS_URI` MongoDB Atlas connection string
 
