@@ -1,4 +1,4 @@
-# burrito-club
+# Burrito Club
 ![burrito-club](https://github.com/user-attachments/assets/10546985-c1a7-4d63-bf90-bb3e9e395fd3)
 
 burrito-club is a real-time chat application built with the socket.io library. Users can connect to a room to chat and plan their lunch outings. A weekly restaurant can be set, visited restaurants are saved, and weekly email reminders to pick a spot are sent out.
